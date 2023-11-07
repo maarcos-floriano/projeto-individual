@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seja um Escoteiro</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cadastro-login.css">
+    <!-- <script src="../js/cadastro.js"></script> -->
+    <script src="../js/main.js"></script>
+</head>
+<body>
+    <header>
+        <div class="linha-verde"></div>
+        <div class="cabecalho">
+            <picture>
+                <a href="../../index.html"><img src="../image/logo-escoteiros-do-brasil.png"></a>
+            </picture>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="./sobre.html">Sobre nós</a>
+                    </li>
+                    <li>
+                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRzGa49D98YAuxwPE-JoVxzIYjt95v_gwUl_UO_7IRZrp6lGr8KHoliYhHJNIjAVNxFkvQ0RBkqtF-S/pubhtml" target="_blank">Calendario</a>
+                    </li>
+                    <li>
+                        <a href="./login.html">Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <img src="../image/triangulo.svg" class="triangulo" width="200px">
+        <section class="conteudo">
+            <h1>Quero ser escoteiro(a) / valuntário(a)</h1>
+            <div class="endereco">
+                <h2>ESCOTEIROS DO BRASIL</h2>
+                <p>Rua Coronel Dulcio, 2107 - Bairro Água Verde</p>
+                <p>CEP 80250-100 - Curitiba - Paraná</p>
+            </div>
+            <div class="contato">
+                <p>Atendimento de segunda a sexta-feira.</p>
+                <p>Das 9h às 12h e das 13h30 às 18h.</p>
+                <p>Tel. <b>(41) 3353-4732</b> ou <b>0800 001 2016</b></p>
+                <p>Whatsapp (41) 3090-7931</p>
+            </div>
+        </section>
+        <section class="formulario">
+            <div class="entrada">
+                <p>Nome*</p>
+                <input class="ipt-normal" id="ipt_nome" required placeholder="Nome e Sobrenome">
+                <p>E-mail*</p>
+                <input class="ipt-normal" type="email" id="ipt_email" placeholder="meuemail@escoteiro.com">
+                <p>Senha*</p>
+                <input type="password" class="ipt-normal" id="ipt_senha" placeholder="Digite uma senha" onkeyup="preenchimentoSenha()">
+                <p>Confirmar Senha*</p>
+                <input class="ipt-normal" type="password" id="ipt_confirmSenha" placeholder="Confirmar Senha">
+            </div>
+            <div class="enviar">
+                <div>
+                    <h1 id="titulo_senha">Fraco</h1>
+                    <div class="barra"><div class="preenchimento"></div></div>
+                </div>
+                <button onclick="enviarCredenciais()">Cadastrar</button>
+            </div>
+        </section>
+        <img src="../image/escoteira-caminhando.png" class="escoteira">
+    </main>
+    <div class="faixa">
+        <img src="../image/ativo-logo-png.png">
+    </div>
+    <footer>
+        <section>
+            <div class="redes-socias">
+                <a href="https://www.instagram.com/olamaarcos/"><img src="../image/instagram.svg" width="32px"></a>            
+                </div>
+            <div class="redes-socias">
+                <a href="https://github.com/maarcos-floriano"><img src="../image/github.png" width="32px"></a>            
+                </div>
+            <div class="redes-socias">
+                <a href="wa.me/5511946669928"><img src="../image/whatsapp.svg" width="32px"></a>            
+                </div>
+            <div class="redes-socias">
+                <a href="https://www.linkedin.com/in/marcos-de-oliveira-floriano-199aa51b6/"><img src="../image/linkedin.svg" width="32px"></a>            
+                </div>
+            <div class="redes-socias">
+                <a href="https://www.youtube.com/channel/UCQKFAoRrmKZz_TqovKw8TTQ"><img src="../image/youtube.svg" width="32px"></a>            
+                </div>
+        </section>
+    </footer>
+</body>
+</html> 

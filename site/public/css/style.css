@@ -1,0 +1,295 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;800&family=Share+Tech+Mono&display=swap");
+
+body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Montserrat";
+}
+header {
+  width: 100%;
+  height: 160px;
+  border-bottom: 1px solid rgb(255, 208, 0);
+}
+header a{
+  text-decoration: none;
+  color: #000;
+}
+header a:hover{
+  text-decoration: underline;
+}
+header .linha-verde {
+  width: 100%;
+  height: 25px;
+  background-color: green;
+}
+header .cabecalho {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+header nav {
+  width: 380px;
+}
+header nav ul {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+main {
+  width: 100vw;
+  max-width: 1024px;
+}
+main .apresentacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .apresentacao video {
+  filter: brightness(50%);
+}
+main .apresentacao .conteudo {
+  position: absolute;
+}
+main .apresentacao .conteudo h1 {
+  color: #fff;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px; /* 120% */
+}
+main .apresentacao .conteudo h2 {
+  color: #fff;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px; /* 93.75% */
+}
+
+main .apresentacao .conteudo p {
+  color: #fff;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 150% */
+}
+.seja-escoteiro {
+  margin: 30px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: yellow 1px solid;
+}
+.seja-escoteiro .conteudo {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-evenly;
+}
+.seja-escoteiro .conteudo h1 {
+  color: #004a8d;
+  text-align: right;
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 33px; /* 110% */
+  letter-spacing: 0.15px;
+}
+.seja-escoteiro .conteudo button {
+  width: 35%;
+  height: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+  background: #00accd;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
+  border: none;
+  text-align: center;
+  font-family: "montserrat";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px; /* 100% */
+  letter-spacing: 0.15px;
+}
+button:hover {
+  cursor: pointer;
+}
+.seja-escoteiro .conteudo button a{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+.seja-escoteiro .conteudo p {
+  width: 80%;
+  text-align: right;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25.2px; /* 140% */
+  letter-spacing: 0.15px;
+}
+.seja-escoteiro .imagem {
+  width: 30%;
+}
+.ramos-escotismo {
+  width: 100%;
+}
+.ramos-escotismo h1 {
+  color: #004a8d;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px; /* 100% */
+  letter-spacing: 0.15px;
+  margin: 10px 0;
+}
+
+.ramos-escotismo .sessoes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ramos-escotismo .sessoes .ramo div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.ramos-escotismo .sessoes div h2 {
+  color: #000;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 31.2px; /* 130% */
+  letter-spacing: 0.15px;
+}
+.ramos-escotismo .sessoes div p {
+  color: #000;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32.4px; /* 180% */
+  letter-spacing: 0.15px;
+}
+
+.movimento {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: yellow 1px solid;
+  margin: 30px 0;
+}
+.movimento .conteudo {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-evenly;
+}
+.movimento .conteudo h1 {
+  color: #004a8d;
+  text-align: left;
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 33px; /* 110% */
+  letter-spacing: 0.15px;
+}
+
+.movimento .conteudo p {
+  width: 80%;
+  text-align: left;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25.2px; /* 140% */
+  letter-spacing: 0.15px;
+}
+.movimento .conteudo p b{
+  font-weight: 800;
+}
+.movimento .imagem {
+  width: 30%;
+}
+.motivacional {
+  border: 1px solid #004A8D;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 500px;
+  width: 100%;
+  margin: 20px 0;
+}
+.motivacional h1{
+  width: 50%;
+  color: #212529;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 67.2px; /* 120% */
+}
+.motivacional img{
+  position: absolute;
+  right: 0%;
+}
+.faixa {
+  width: 100%;
+  height: 80px;
+  background-color: #2c4678;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+footer {
+  background-image: url("../image/foto-respiro.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 370px;
+}
+footer section{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+footer section div{
+  margin: 20px 10px;
+}
+footer img{
+  transition: .3s;
+}
+footer img:hover{
+  transform: scale(1.1);
+}
