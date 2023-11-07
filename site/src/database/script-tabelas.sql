@@ -6,9 +6,9 @@
 comandos para mysql - banco local - ambiente de desenvolvimento
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE projetoIndividual;
 
-USE aquatech;
+USE projetoIndividual;
 
 CREATE TABLE empresa (
 	id INT PRIMARY KEY AUTO_INCREMENT,
