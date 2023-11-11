@@ -72,21 +72,32 @@ function validarNome(nome) {
     return true;
   }
 }
+function validarRegistro(registroVar){
+  const styleRegistro = document.getElementById('ipt_registro');
+
+  if(registroVar < 6){
+    styleRegistro.style.borderBottom = '2px solid red'
+    alert('Registro invalido')
+    return false
+  }else{
+    styleRegistro.style.borderBottom = "1px solid black";
+    return true;
+  }
+}
 
 function enviarCredenciais() {
-  var email = ipt_email.value;
-  var senha = ipt_senha.value;
-  var confirmSenha = ipt_confirmSenha.value;
-  var nome = ipt_nome.value;
-  // validarEmail(email);
-  // validarCep(cep);
-  // validarTelefone(telefone);
-  // validarNome(nome);
+  var emailVar = ipt_email.value;
+  var senhaVar = ipt_senha.value;
+  var confirmSenhaVar = ipt_confirmSenha.value;
+  var nomeVar = ipt_nome.value;
+  var registroVar = ipt_registro.value;
+
   if (
-    validarEmail(email) &&
-    validarSenha(senha, confirmSenha) &&
-    validarNome(nome)
+    validarEmail(emailVar) &&
+    validarSenha(senhaVar, confirmSenhaVar) &&
+    validarNome(nomeVar) &&
+    validarRegistro(registroVar)
   ) {
-    window.location.href = "../html/sobre.html";
+    window.location.href = "./sobre.html";
   }
 }
