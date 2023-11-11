@@ -271,7 +271,7 @@ button:hover {
   margin: 20px 0;
 }
 footer {
-  background-image: url("../image/foto-respiro.jpeg");
+  background-image: url("../assets/foto-respiro.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
