@@ -72,17 +72,33 @@ function validarNome(nome) {
     return true;
   }
 }
-function validarRegistro(registroVar){
-  const styleRegistro = document.getElementById('ipt_registro');
+function validarRegistro(registroVar) {
+  const styleRegistro = document.getElementById("ipt_registro");
 
-  if(registroVar < 6){
-    styleRegistro.style.borderBottom = '2px solid red'
-    alert('Registro invalido')
-    return false
-  }else{
+  if (registroVar < 6) {
+    styleRegistro.style.borderBottom = "2px solid red";
+    alert("Registro invalido");
+    return false;
+  } else {
     styleRegistro.style.borderBottom = "1px solid black";
     return true;
   }
+}
+
+function listar() {
+  fetch("/patrulhas/listar", {
+    method: "GET",
+  })
+    .then(function (resposta) {
+      resposta.json().then((patrulhas) => {
+        patrulhas.forEach((patrulhas) => {
+          slct_patrulha.innerHTML += `<option value='${patrulhas.id}'>${patrulhas.ptr_nome}</option>`;
+        });
+      });
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
 }
 
 function enviarCredenciais() {
@@ -91,6 +107,8 @@ function enviarCredenciais() {
   var confirmSenhaVar = ipt_confirmSenha.value;
   var nomeVar = ipt_nome.value;
   var registroVar = ipt_registro.value;
+  var patrulhaVar = slct_patrulha.value
+
 
   if (
     validarEmail(emailVar) &&
@@ -100,4 +118,45 @@ function enviarCredenciais() {
   ) {
     window.location.href = "./sobre.html";
   }
+
+  fetch("/usuarios/cadastrar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      // crie um atributo que recebe o valor recuperado aqui
+      // Agora vá para o arquivo routes/usuario.js
+      nomeServer: nomeVar,
+      emailServer: emailVar,
+      senhaServer: senhaVar,
+      patrulhaServer: patrulhaVar,
+      registroServer: registroVar
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        cardErro.style.display = "block";
+
+        mensagem_erro.innerHTML =
+          "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+        setTimeout(() => {
+          window.location = "login.html";
+        }, "2000");
+
+        limparFormulario();
+        finalizarAguardar();
+      } else {
+        throw "Houve um erro ao tentar realizar o cadastro!";
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+
+  return false;
 }
