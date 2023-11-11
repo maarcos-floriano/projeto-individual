@@ -20,8 +20,10 @@ function validarSenha(senha, confirmSenha) {
   ) {
     alert("Senha fraca");
     senhaStyle.style.borderBottom = "2px solid red";
+    return false;
   } else if (senha !== confirmSenha) {
     alert("As senhas não coincidem.");
+    return false;
   } else {
     senhaStyle.style.borderBottom = "1px solid black";
     return true;
