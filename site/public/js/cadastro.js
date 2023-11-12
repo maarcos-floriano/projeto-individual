@@ -3,6 +3,7 @@ function validarEmail(email) {
   const emailStyle = document.getElementById("ipt_email");
   if (!regexEmail.test(email)) {
     emailStyle.style.borderBottom = "2px solid red";
+    alert('email invalido')
   } else {
     emailStyle.style.borderBottom = "1px solid black";
     return true;
@@ -118,7 +119,10 @@ function enviarCredenciais() {
     validarNome(nomeVar) &&
     validarRegistro(registroVar)
   ) {
-    window.location.href = "./sobre.html";
+    alert('Cadastro feito com sucesso, redirecionando')
+    setTimeout(() => {
+      window.location = "login.html";
+    }, "2000");
   }
 
   fetch("/usuarios/cadastrar", {
@@ -149,15 +153,15 @@ function enviarCredenciais() {
           window.location = "login.html";
         }, "2000");
 
-        limparFormulario();
-        finalizarAguardar();
+        // limparFormulario();
+        // finalizarAguardar();
       } else {
         throw "Houve um erro ao tentar realizar o cadastro!";
       }
     })
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
-      finalizarAguardar();
+      // finalizarAguardar();
     });
 
   return false;
