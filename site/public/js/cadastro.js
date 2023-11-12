@@ -4,6 +4,7 @@ function validarEmail(email) {
   if (!regexEmail.test(email)) {
     emailStyle.style.borderBottom = "2px solid red";
     alert('email invalido')
+    return false
   } else {
     emailStyle.style.borderBottom = "1px solid black";
     return true;

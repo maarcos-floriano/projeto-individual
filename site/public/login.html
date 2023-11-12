@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Começe os trabalhos</title>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/cadastro-login.css">
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/cadastro-login.css" />
+    <script src="./js/cadastro.js"></script>
   </head>
   <body>
     <header>
@@ -46,15 +47,16 @@
         </div>
       </section>
       <section class="forms">
-          <div class="titulo"><h1>Credenciais</h1></div>
-          <div class="dados">
-              <div class="credenciais">
-                <input placeholder="Nome Completo*">
-                <input placeholder="Senha*" type="password">
-              </div>
-              <div class="chk-credenciais">Salvar credenciais<input type="checkbox"></div>
-            <button class="btn-login">Login</button>
+        <div class="titulo"><h1>Credenciais</h1></div>
+        <div class="dados">
+          <div class="credenciais">
+            <h2>Login</h2>
+            <input placeholder="Registro*" id="ipt_registro" class="entradas"/>
+            <h2>Senha</h2>
+            <input placeholder="Senha*" type="password" id="ipt_senha" class="entradas"/> 
           </div>
+          <button class="btn-login" onclick="acessar()">Login</button>
+        </div>
       </section>
       <img src="./assets/escoteira-caminhando.png" class="escoteira" />
     </main>
@@ -95,5 +97,61 @@
 </html>
 
 <script>
+  function acessar() {
+    var registroVar = ipt_registro.value;
+    var senhaVar = ipt_senha.value;
+    const styleSenha = document.getElementById('ipt_senha');
+    const styleRegistro = document.getElementById('ipt_registro');
 
+    if(senhaVar == "" || registroVar == ""){
+      styleSenha.style.border = "1px solid red";
+      styleRegistro.style.border = "1px solid red";
+      setTimeout(() => {
+        alert('Campos invalidos')
+      }, 100);
+      return false
+    }
+    fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                registroServer: registroVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.registro;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+  }
 </script>
