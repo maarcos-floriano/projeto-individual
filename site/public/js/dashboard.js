@@ -1,15 +1,23 @@
-function telaEspecialidades(){
-    document.getElementById('tela_especialidades').style.display = 'flex';
-    document.getElementById('tela_dashboard').style.display = 'none';
-    document.getElementById('tela_guia').style.display = 'none';
-}
-function telaDashboard() {
-    document.getElementById('tela_dashboard').style.display = 'flex';
-    document.getElementById('tela_especialidades').style.display = 'none';
-    document.getElementById('tela_guia').style.display = 'none';
-}
-function telaGuia(){
-    document.getElementById('tela_guia').style.display = 'flex';
-    document.getElementById('tela_dashboard').style.display = 'none';
-    document.getElementById('tela_especialidades').style.display = 'none';
+const monitorEspecialidades = document.getElementById('tela_especialidades');
+const monitorDashboard = document.getElementById('tela_dashboard');
+const monitorGuia = document.getElementById('tela_guia');
+
+function trocaDeTela(tela){ 
+    var monitores = [monitorEspecialidades, monitorDashboard, monitorGuia]
+
+    for(var i=0; i<monitores.length; i++){
+        if(tela == 0){
+            monitores[0].style.display = "flex";
+            monitores[1].style.display = "none";
+            monitores[2].style.display = "none";
+        }else if(tela == 1){
+            monitores[0].style.display = "none";
+            monitores[1].style.display = "flex";
+            monitores[2].style.display = "none";
+        }else{
+            monitores[0].style.display = "none";
+            monitores[1].style.display = "none";
+            monitores[2].style.display = "flex"
+        }
+    }
 }

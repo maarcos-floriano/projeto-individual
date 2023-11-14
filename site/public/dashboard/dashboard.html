@@ -11,15 +11,15 @@
     <aside>
       <h1>Titulo</h1>
       <ul>
-        <li onclick="telaDashboard()">
+        <li onclick="trocaDeTela(1)">
           <img src="" alt="" />
           <p>DashBoard</p>
         </li>
-        <li onclick="telaEspecialidades()">
+        <li onclick="trocaDeTela(0)">
           <img src="" alt="" />
           <p>Especialidade</p>
         </li>
-        <li onclick="telaGuia()">
+        <li onclick="trocaDeTela(2)">
           <img src="" alt="" />
           <p>Atividades do Guia</p>
         </li>
@@ -45,10 +45,10 @@
           <figure>
             <img src="../assets/flor de lis.png" width="30px" />
           </figure>
-          <select id="">
-            <option value="">Sobre</option>
-            <option value="">Feedback</option>
-            <option value="">Sair</option>
+          <select id="menuSelect" onchange="maisOpcoes()">
+            <option value="1">Sobre</option>
+            <option value="2">Feedback</option>
+            <option value="3">Sair</option>
           </select>
         </div>
       </header>
