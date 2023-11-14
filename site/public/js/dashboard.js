@@ -2,8 +2,8 @@ const monitorEspecialidades = document.getElementById("tela_especialidades");
 const monitorDashboard = document.getElementById("tela_dashboard");
 const monitorGuia = document.getElementById("tela_guia");
 
-function maisOpcoes() {
-  var menu = Number(menuSelect.value);
+function maisOpcoes(idSelect) {
+  var menu = Number(idSelect.value);
   var direcionamentos = [
     "../sobre",
     "mail.to/marcos.floriano@sptech.school",
