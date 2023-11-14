@@ -1,317 +1,395 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboards.css">
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!--FONT AWESOME-->
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-</head>
-
-<!-- <body onload=" atualizarFeed()"> -->
-
-<body>
-
-    <div class="janela">
-        <div class="header-left">
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/dashboards.css" />
+  </head>
+  <body>
+    <aside>
+      <h1>Titulo</h1>
+      <ul>
+        <li onclick="telaDashboard()">
+          <img src="" alt="" />
+          <p>DashBoard</p>
+        </li>
+        <li onclick="telaEspecialidades()">
+          <img src="" alt="" />
+          <p>Especialidade</p>
+        </li>
+        <li onclick="telaGuia()">
+          <img src="" alt="" />
+          <p>Atividades do Guia</p>
+        </li>
+        <li>
+          <img src="" alt="" />
+          <p>Insignia da Modalidade</p>
+        </li>
+      </ul>
+      <figure>
+        <img src="../assets/distintivo-escoteiro_da_patria-removebg-preview.png" alt="flor-de-liz" width="100px" />
+        <progress id="barra_progresso" value="0" max="100"></progress>
+      </figure>
+    </aside>
+    <main class="main-dashboard" id="tela_dashboard">
+      <header class="cabecalho">
+        <div class="titulo">
+          <h1>Progresso da sua Liz de Ouro</h1>
         </div>
-
-        <div class="dash">
-            <div id="alerta">
-            </div>
-
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
-            </div>
+        <div class="nav">
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <select id="">
+            <option value="">Sobre</option>
+            <option value="">Feedback</option>
+            <option value="">Sair</option>
+          </select>
         </div>
-    </div>
-
-
-</body>
-
+      </header>
+      <section class="grafico-superior">
+        <article>
+          <h2>Atividades do Guia</h2>
+          <canvas></canvas>
+        </article>
+        <article>
+          <h2>Insignia da Modalidade</h2>
+          <canvas></canvas>
+        </article>
+        <article>
+          <h2>Cordões de Eficiencia</h2>
+          <canvas></canvas>
+        </article>
+      </section>
+      <section class="grafico-inferior">
+        <article class="grafico-linha">
+          <h2>Especialidades Mensal</h2>
+          <canvas></canvas>
+        </article>
+        <article class="grafico-barra">
+          <h2>Insignia de Interesse Especial</h2>
+          <canvas></canvas>
+        </article>
+      </section>
+    </main>
+    <main class="main-especialidades" id="tela_especialidades">
+      <header class="cabecalho">
+        <div class="titulo">
+          <h1>Progresso da sua Liz de Ouro</h1>
+        </div>
+        <div class="nav">
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <select id="">
+            <option value="">Sobre</option>
+            <option value="">Feedback</option>
+            <option value="">Sair</option>
+          </select>
+        </div>
+      </header>
+      <section>
+        <article>
+          <header>
+            <div>10</div>
+          </header>
+          <ul class="itens">
+            <li><input type="checkbox" />Acampamento</li>
+            <li><input type="checkbox" />Acampamento de Minimo Impacto</li>
+            <li><input type="checkbox" />Almoxarifado</li>
+            <li><input type="checkbox" />Cidadania do Mundo</li>
+            <li><input type="checkbox" />Culinaria</li>
+            <li><input type="checkbox" />Culinaria Mateira</li>
+            <li><input type="checkbox" />Ferramentas de Corte</li>
+            <li><input type="checkbox" />Fogo de Conselho</li>
+            <li><input type="checkbox" />Historia do Escotismo</li>
+            <li><input type="checkbox" />Lenhador</li>
+            <li><input type="checkbox" />Marinharia</li>
+            <li><input type="checkbox" />Pioneiria</li>
+            <li><input type="checkbox" />Rastreamento</li>
+            <li><input type="checkbox" />Tecnicas de Sapa</li>
+          </ul>
+        </article>
+        <article>
+          <header>
+            <div>10</div>
+          </header>
+          <ul class="itens">
+            <li><input type="checkbox" />Atletismo</li>
+            <li><input type="checkbox" />Badminton</li>
+            <li><input type="checkbox" />Beisebol</li>
+            <li><input type="checkbox" />Basquete</li>
+            <li><input type="checkbox" />Canoagem</li>
+            <li><input type="checkbox" />Ciclismo</li>
+            <li><input type="checkbox" />Escalada</li>
+            <li><input type="checkbox" />Esgrima</li>
+            <li><input type="checkbox" />Futebol</li>
+            <li><input type="checkbox" />Golfe</li>
+            <li><input type="checkbox" />Hóquei</li>
+            <li><input type="checkbox" />Judô</li>
+            <li><input type="checkbox" />Karatê</li>
+            <li><input type="checkbox" />Natação</li>
+            <li><input type="checkbox" />Patinagem</li>
+            <li><input type="checkbox" />Pentatlo Moderno</li>
+            <li><input type="checkbox" />Pólo Aquático</li>
+            <li><input type="checkbox" />Rúgbi</li>
+            <li><input type="checkbox" />Surfe</li>
+            <li><input type="checkbox" />Tênis</li>
+            <li><input type="checkbox" />Tênis de Mesa</li>
+            <li><input type="checkbox" />Voleibol</li>
+            <li><input type="checkbox" />Xadrez</li>
+          </ul>
+        </article>
+      </section>
+      <section>
+        <article>
+          <header>
+            <div>10</div>
+          </header>
+          <ul class="itens">
+            <li><input type="checkbox" />Arte</li>
+            <li><input type="checkbox" />Cinema</li>
+            <li><input type="checkbox" />Dança</li>
+            <li><input type="checkbox" />Desenho</li>
+            <li><input type="checkbox" />Escultura</li>
+            <li><input type="checkbox" />Fotografia</li>
+            <li><input type="checkbox" />Gastronomia</li>
+            <li><input type="checkbox" />História</li>
+            <li><input type="checkbox" />Literatura</li>
+            <li><input type="checkbox" />Música</li>
+            <li><input type="checkbox" />Pintura</li>
+            <li><input type="checkbox" />Poetry</li>
+            <li><input type="checkbox" />Teatro</li>
+            <li><input type="checkbox" />Arqueologia</li>
+            <li><input type="checkbox" />Astronomia</li>
+            <li><input type="checkbox" />Botânica</li>
+            <li><input type="checkbox" />Geologia</li>
+            <li><input type="checkbox" />Herpetologia</li>
+            <li><input type="checkbox" />Numismática</li>
+            <li><input type="checkbox" />Ornitologia</li>
+            <li><input type="checkbox" />Paleontologia</li>
+            <li><input type="checkbox" />Zoologia</li>
+            <li><input type="checkbox" />Antropologia</li>
+            <li><input type="checkbox" />Etnologia</li>
+            <li><input type="checkbox" />Folklore</li>
+            <li><input type="checkbox" />Genealogia</li>
+            <li><input type="checkbox" />Linguística</li>
+            <li><input type="checkbox" />Mitologia</li>
+            <li><input type="checkbox" />Numismática</li>
+            <li><input type="checkbox" />Ornitologia</li>
+            <li><input type="checkbox" />Paleontologia</li>
+            <li><input type="checkbox" />Zoologia</li>
+            <li><input type="checkbox" />Antropologia</li>
+            <li><input type="checkbox" />Etnologia</li>
+            <li><input type="checkbox" />Folklore</li>
+            <li><input type="checkbox" />Genealogia</li>
+            <li><input type="checkbox" />Linguística</li>
+            <li><input type="checkbox" />Mitologia</li>
+            <li><input type="checkbox" />Numismática</li>
+            <li><input type="checkbox" />Ornitologia</li>
+            <li><input type="checkbox" />Paleontologia</li>
+            <li><input type="checkbox" />Zoologia</li>
+            <li><input type="checkbox" />Antropologia</li>
+            <li><input type="checkbox" />Etnologia</li>
+            <li><input type="checkbox" />Folklore</li>
+            <li><input type="checkbox" />Genealogia</li>
+            <li><input type="checkbox" />Linguística</li>
+            <li><input type="checkbox" />Mitologia</li>
+          </ul>
+        </article>
+        <article>
+          <header>
+            <div>10</div>
+          </header>
+          <ul class="itens">
+            <li><input type="checkbox" />Assistência Médica</li>
+            <li><input type="checkbox" />Bombeiro Civil</li>
+            <li><input type="checkbox" />Culinária</li>
+            <li><input type="checkbox" />Dentista</li>
+            <li><input type="checkbox" />Educação Ambiental</li>
+            <li><input type="checkbox" />Eletricista</li>
+            <li><input type="checkbox" />Encanador</li>
+            <li><input type="checkbox" />Enfermagem</li>
+            <li><input type="checkbox" />Hotelaria</li>
+            <li><input type="checkbox" />Informática</li>
+            <li><input type="checkbox" />Jardinagem</li>
+            <li><input type="checkbox" />Mecânica</li>
+            <li><input type="checkbox" />Montanhismo</li>
+            <li><input type="checkbox" />Prestação de Socorros</li>
+            <li><input type="checkbox" />Primeiros Socorros</li>
+            <li><input type="checkbox" />Robótica</li>
+            <li><input type="checkbox" />Soldagem</li>
+            <li><input type="checkbox" />Web Design</li>
+            <li><input type="checkbox" />Alvenaria</li>
+            <li><input type="checkbox" />Arqueologia</li>
+            <li><input type="checkbox" />Arquitetura</li>
+            <li><input type="checkbox" />Carpintaria</li>
+            <li><input type="checkbox" />Cartografia</li>
+            <li><input type="checkbox" />Construção Civil</li>
+            <li><input type="checkbox" />Desenho Técnico</li>
+            <li><input type="checkbox" />Fotografia</li>
+            <li><input type="checkbox" />Hidráulica</li>
+            <li><input type="checkbox" />Marcenaria</li>
+            <li><input type="checkbox" />Meteorologia</li>
+            <li><input type="checkbox" />Mineração</li>
+            <li><input type="checkbox" />Operador de Máquinas</li>
+            <li><input type="checkbox" />Paisagismo</li>
+            <li><input type="checkbox" />Panificação</li>
+            <li><input type="checkbox" />Serralheria</li>
+            <li><input type="checkbox" />Topografia</li>
+            <li><input type="checkbox" />Torneiro Mecânico</li>
+            <li><input type="checkbox" />Veterinária</li>
+            <li><input type="checkbox" />Vidraçaria</li>
+            <li><input type="checkbox" />Zootecnia</li>
+          </ul>
+        </article>
+      </section>
+      <section>
+        <article>
+          <header>
+            <div>10</div>
+          </header>
+          <ul class="itens">
+            <li><input type="checkbox" />Aeroespacial</li>
+            <li><input type="checkbox" />Astronomia</li>
+            <li><input type="checkbox" />Biologia</li>
+            <li><input type="checkbox" />Ciência da Computação</li>
+            <li><input type="checkbox" />Eletrônica</li>
+            <li><input type="checkbox" />Engenharia</li>
+            <li><input type="checkbox" />Física</li>
+            <li><input type="checkbox" />Geologia</li>
+            <li><input type="checkbox" />Matemática</li>
+            <li><input type="checkbox" />Meteorologia</li>
+            <li><input type="checkbox" />Nanotecnologia</li>
+            <li><input type="checkbox" />Robótica</li>
+            <li><input type="checkbox" />Sustentabilidade</li>
+            <li><input type="checkbox" />Zoologia</li>
+            <li><input type="checkbox" />Arqueologia</li>
+            <li><input type="checkbox" />Biomedicina</li>
+            <li><input type="checkbox" />Bioquímica</li>
+            <li><input type="checkbox" />Ciências Forenses</li>
+            <li><input type="checkbox" />Energias Renováveis</li>
+            <li><input type="checkbox" />Genética</li>
+            <li><input type="checkbox" />Medicina</li>
+            <li><input type="checkbox" />Nuclear</li>
+            <li><input type="checkbox" />Química</li>
+            <li><input type="checkbox" />Telecomunicações</li>
+            <li><input type="checkbox" />Biologia Marinha</li>
+            <li><input type="checkbox" />Biologia Molecular</li>
+            <li><input type="checkbox" />Criptografia</li>
+            <li><input type="checkbox" />Engenharia de Software</li>
+            <li><input type="checkbox" />Geofísica</li>
+            <li><input type="checkbox" />Matemática Aplicada</li>
+            <li><input type="checkbox" />Nanomedicina</li>
+            <li><input type="checkbox" />Química Orgânica</li>
+            <li><input type="checkbox" />Telemedicina</li>
+            <li><input type="checkbox" />Bioinformática</li>
+            <li><input type="checkbox" />Bioprocessos</li>
+            <li><input type="checkbox" />Desenvolvimento de Jogos</li>
+            <li><input type="checkbox" />Engenharia Elétrica</li>
+            <li><input type="checkbox" />Geoprocessamento</li>
+            <li><input type="checkbox" />Matemática Financeira</li>
+            <li><input type="checkbox" />Nanotecnologia na Medicina</li>
+            <li><input type="checkbox" />Química Inorgânica</li>
+            <li><input type="checkbox" />Telefonia Móvel</li>
+            <li><input type="checkbox" />Bioquímica Clínica</li>
+            <li><input type="checkbox" />Biotecnologia</li>
+            <li><input type="checkbox" />Ecologia</li>
+            <li><input type="checkbox" />Geotecnia</li>
+            <li><input type="checkbox" />Matemática Pura</li>
+            <li><input type="checkbox" />Nanotecnologia na Agricultura</li>
+            <li><input type="checkbox" />Química Medicinal</li>
+            <li><input type="checkbox" />Televisão Digital</li>
+            <li><input type="checkbox" />Bioética</li>
+            <li><input type="checkbox" />Ciência Política</li>
+            <li><input type="checkbox" />Engenharia Mecânica</li>
+            <li><input type="checkbox" />Geofísica Espacial</li>
+            <li><input type="checkbox" />Matemática Computacional</li>
+            <li><input type="checkbox" />Nanotecnologia Ambiental</li>
+            <li><input type="checkbox" />Química Analítica</li>
+            <li><input type="checkbox" />Teoria da Informação</li>
+            <li><input type="checkbox" />Biofísica</li>
+            <li><input type="checkbox" />Ciência de Dados</li>
+            <li><input type="checkbox" />Engenharia de Produção</li>
+            <li><input type="checkbox" />Geoprocessamento Ambiental</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+    <main class="main-atividades-guia" id="tela_guia">
+      <header class="cabecalho">
+        <div class="titulo">
+          <h1>Progresso da sua Liz de Ouro</h1>
+        </div>
+        <div class="nav">
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <select id="">
+            <option value="">Sobre</option>
+            <option value="">Feedback</option>
+            <option value="">Sair</option>
+          </select>
+        </div>
+      </header>
+      <section>
+        <article>
+          <ol>
+            <li>
+              <input type="checkbox" id=""/>
+              <p>1 - Conhecer a estrutura da Tropa Senior.</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>2 - Conhecer os membros da sua Patrulha e os seus encargos.</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>3 - Entender e usar o lema do Escoteiro, o sinal, a saudação e o aperto de mão.</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>4 - Reconhecer os sinais manuais e apitos de comandos.</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>5 - Saber o grito da sua patrulha e conhecer o seu significado.</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>6 - Conhecer o uniforme escoteiro e o significado dos seus distintivos</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>7 - Conhecer o sistema de progressão do Ramo Senior.</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>8 - Saber como hastear e arriar a Bandeira Nacional.</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>9 - Conhecer os aspectos mais importantes da historia do Escotismo e do seu Fundador</p>
+            </li>
+            <li>
+              <input type="checkbox" name="" id="" />
+              <p>10 - Conhecer a Lei e a Promessa Escoteira.</p>
+            </li>
+          </ol>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>
-
-<script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-    let proximaAtualizacao;
-
-    window.onload = exibirAquariosDoUsuario();
-
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
-
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
-
-            obterDadosGrafico(item.id)
-        });
-
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
-    }
-
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
-
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
-        }
-
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    }
-
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
-
-        alterarTitulo(idAquario)
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico(resposta, idAquario);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
-
-        console.log('iniciando plotagem do gráfico...');
-
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
-
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
-
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
-            config
-        );
-
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
-
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
-</script>
+<script src="../js/dashboard.js"></script>
