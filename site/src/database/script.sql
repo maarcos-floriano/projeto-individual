@@ -2,44 +2,42 @@ CREATE DATABASE escoteirosDoBrasil;
 
 use escoteirosDoBrasil;
 
-
-CREATE table patrulhas (
-	idPatrulha int PRIMARY KEY,
-	ptr_nome VARCHAR(30),
-	ptr_qtdEspecialidades int
-);
+select * from usuarios;
 
 CREATE TABLE usuarios (
 idUsuario int PRIMARY KEY auto_increment,
 usr_nome VARCHAR(45),
+usr_registro CHAR(6) NOT NULL UNIQUE,
 usr_email VARCHAR(255) NOT NULL,
 usr_senha VARCHAR(255) NOT NULL,
-usr_patrulha VARCHAR(45),
-check (usr_patrulha in ('AGUIA', 'LEAO', 'TIGRE')),
-usr_registro CHAR(6) NOT NULL UNIQUE,
-fkPatrulha int,
-Foreign Key (fkPatrulha) REFERENCES patrulhas(idPatrulha)
+usr_patrulha int NOT NULL
+)auto_increment=100;
+
+CREATE table patrulhas (
+	idPatrulha int PRIMARY KEY,
+	ptr_nome VARCHAR(30),
+    fkUsuario INT,
+    constraint ptrUsuario
+    foreign key (fkUsuario) references usuarios(idUsuario)
 );
 
 CREATE table LizDeOuro (
 	idLiz INT PRIMARY KEY auto_increment,
-	liz_dtConquista date,
-	fkUsuario int,
-	Foreign Key (fkUsuario) REFERENCES usuarios(idUsuario)
-);
+    liz_possui boolean,
+    liz_dtConquista DATE,
+    fkUsuario INT,
+    constraint lizUsuario
+    foreign key (fkUsuario) references usuarios(idUsuario)
+)auto_increment=1000;
 
 CREATE table especialidades (
-	idEspecialidades int PRIMARY KEY auto_increment,
+	idEspec int PRIMARY KEY auto_increment,
 	espec_nome VARCHAR(45),
-	espec_modalidade VARCHAR(45)
-);
-
-CREATE table dataEspecialidade (
-	fkEspecialidade int,
-	Foreign Key (fkEspecialidade) REFERENCES especialidades(idEspecialidades),
-	fkUsuario int,
-	Foreign Key (fkUsuario) REFERENCES usuarios(idUsuario),
-	dtEspec date,
-	PRIMARY KEY (fkEspecialidade, fkUsuario)
+	espec_modalidade VARCHAR(45),
+    espec_dtConquista DATE,
+    espec_possui boolean,
+    fkUsuario INT,
+    constraint especUsuario 
+    foreign key (fkUsuario) references usuarios(idUsuario)
 );
 
