@@ -5,13 +5,16 @@ const monitorGuia = document.getElementById("tela_guia");
 function maisOpcoes(idSelect) {
   var menu = Number(idSelect.value);
   var direcionamentos = [
-    "../sobre",
-    "mail.to/marcos.floriano@sptech.school",
-    "../login",
+    "../sobre.html",
+    "http://mail.to/marcos.floriano@sptech.school",
+    "../login.html"
   ];
-  for (var i = 0; i < 4; i++) {
-    if (menu == i) window.open(direcionamentos[i], "_blank");
+  if(menu<3){
+    for (var i = 0; i < 4; i++) {
+      if (menu == i) window.open(direcionamentos[i], "_blank");
+    }
   }
+  
 }
 
 function trocaDeTela(tela) {
