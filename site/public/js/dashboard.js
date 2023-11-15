@@ -14,16 +14,17 @@ function maisOpcoes(idSelect) {
       if (menu == i) {
         if (i != 2) {
           window.open(direcionamentos[i], "_blank");
-          idSelect.value = -1
+          idSelect.value = -1;
         } else {
           window.location.assign(direcionamentos[i]);
-          idSelect.value = -1
+          idSelect.value = -1;
         }
       }
     }
   } else if (menu == 3) {
-    verificarEspecialidades()
-    idSelect.value = -1
+    verificarEspecialidades();
+    idSelect.value = -1;
+    barra_progresso.value = listaCheckEspec.length * 2;
     // location.reload()
   }
 }
@@ -31,6 +32,7 @@ function maisOpcoes(idSelect) {
 let listaCheckEspec = [];
 
 function verificarEspecialidades() {
+  var idUsuario = sessionStorage.ID_USUARIO;
   let especialidades = document.querySelectorAll(
     '.itens input[type="checkbox"]'
   );
@@ -41,16 +43,22 @@ function verificarEspecialidades() {
       if (especExiste == -1) {
         listaCheckEspec.push(checkbox.name);
       }
-    }else{
+    } else {
       var index = listaCheckEspec.indexOf(checkbox.name);
 
-      if (index != -1){
+      if (index != -1) {
         listaCheckEspec.splice(index, 1);
       }
     }
   });
 
-  return console.log(`Sua lista: ${listaCheckEspec.join(', ')}`)
+  return console.log(`${idUsuario} Sua lista: ${listaCheckEspec.join(", ")}`);
+}
+
+function updateEspecialidades(){
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch("/usuario/listar/")
 }
 
 function trocaDeTela(tela) {
