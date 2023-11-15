@@ -1,8 +1,8 @@
 var database = require("../database/config");
 
-function listar() {
+function listar(idUsuario) {
   var instrucao = `
-        select espec_nome as Possui from especialidades where espec_possui = true AND fkUsuario = 100;
+        select espec_nome as Possui from especialidades where espec_possui = true AND fkUsuario = ${idUsuario};
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

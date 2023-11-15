@@ -8,7 +8,7 @@ function autenticar(registro, senha) {
   );
   var instrucao = `
         
-select usr_nome, usr_email, usr_senha, usr_registro from usuarios where usr_registro = '${registro}' and usr_senha = '${senha}';
+select idUsuario, usr_nome, usr_email, usr_senha, usr_registro from usuarios where usr_registro = '${registro}' and usr_senha = '${senha}';
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

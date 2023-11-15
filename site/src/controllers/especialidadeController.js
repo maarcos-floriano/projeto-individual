@@ -1,7 +1,9 @@
 var especialidadeModel = require("../models/especialidadeModel");
 
 function listar(req, res){
-    especialidadeModel.listar().then(function(resultado){
+    var idUsuario = req.params.idUsuario;
+
+    especialidadeModel.listar(idUsuario).then(function(resultado){
         res.status(200).json(resultado);
     }).catch(function(erro){
         res.status(500).json(erro.sqlMessage);
@@ -12,7 +14,7 @@ function cadastrar(req, res) {
     var nomeEspec = req.body.espec_nome;
     var modalidadeEspec = req.body.espec_modalidadep;
     var checkEspec = req.body.espec_possui;
-    var idUsuario = req.body.idUsuario
+    var idUsuario = req.params.idUsuario
 
     if (nomeEspec == undefined) {
         res.status(400).send("Especialidade nome está undefined!");

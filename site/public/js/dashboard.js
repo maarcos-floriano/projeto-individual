@@ -7,14 +7,48 @@ function maisOpcoes(idSelect) {
   var direcionamentos = [
     "../sobre.html",
     "http://mail.to/marcos.floriano@sptech.school",
-    "../login.html"
+    "../login.html",
   ];
-  if(menu<3){
+  if (menu < 3) {
     for (var i = 0; i < 4; i++) {
-      if (menu == i) window.open(direcionamentos[i], "_blank");
+      if (menu == i) {
+        if (i != 2) {
+          window.open(direcionamentos[i], "_blank");
+        } else {
+          window.location.assign(direcionamentos[i]);
+        }
+      }
     }
+  } else if (menu == 3) {
+    verificarEspecialidades()
+    idSelect.value = -1
+    // location.reload()
   }
-  
+}
+
+let listaCheckEspec = [];
+
+function verificarEspecialidades() {
+  let especialidades = document.querySelectorAll(
+    '.itens input[type="checkbox"]'
+  );
+
+  especialidades.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      var especExiste = listaCheckEspec.indexOf(checkbox.name);
+      if (especExiste == -1) {
+        listaCheckEspec.push(checkbox.name);
+      }
+    }else{
+      var index = listaCheckEspec.indexOf(checkbox.name);
+
+      if (index != -1){
+        listaCheckEspec.splice(index, 1);
+      }
+    }
+  });
+
+  return console.log(`Sua lista: ${listaCheckEspec.join(', ')}`)
 }
 
 function trocaDeTela(tela) {
