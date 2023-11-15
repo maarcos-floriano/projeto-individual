@@ -14,7 +14,7 @@ var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
 var patrulhasRouter = require("./src/routes/patrulhas");
-var guiaRouter = require("./src/routes/guia")
+var especialidadeRouter = require("./src/routes/especialidade")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,7 +28,7 @@ app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/patrulhas", patrulhasRouter);
-app.use("/guia", guiaRouter)
+app.use("/especialidade", especialidadeRouter)
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
