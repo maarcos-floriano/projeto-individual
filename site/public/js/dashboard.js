@@ -14,8 +14,10 @@ function maisOpcoes(idSelect) {
       if (menu == i) {
         if (i != 2) {
           window.open(direcionamentos[i], "_blank");
+          idSelect.value = -1
         } else {
           window.location.assign(direcionamentos[i]);
+          idSelect.value = -1
         }
       }
     }
