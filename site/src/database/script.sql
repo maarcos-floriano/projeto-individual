@@ -11,6 +11,8 @@ usr_senha VARCHAR(255) NOT NULL,
 usr_patrulha int NOT NULL
 )auto_increment=100;
 
+select * from usuarios;
+
 CREATE table patrulhas (
 	idPatrulha int PRIMARY KEY,
 	ptr_nome VARCHAR(30),
@@ -39,3 +41,9 @@ CREATE table especialidades (
     foreign key (fkUsuario) references usuarios(idUsuario)
 );
 
+insert into especialidades(espec_nome, espec_modalidade, espec_possui, fkUsuario) values
+("Acampamento", "Hab.Escoteira", true, 100);
+
+select espec_nome as Possui from especialidades where espec_possui = true AND fkUsuario = 100;
+
+select idUsuario from usuarios where usr_registro = 999999;
