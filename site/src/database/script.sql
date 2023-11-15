@@ -2,8 +2,6 @@ CREATE DATABASE escoteirosDoBrasil;
 
 use escoteirosDoBrasil;
 
-select * from usuarios;
-
 CREATE TABLE usuarios (
 idUsuario int PRIMARY KEY auto_increment,
 usr_nome VARCHAR(45),
