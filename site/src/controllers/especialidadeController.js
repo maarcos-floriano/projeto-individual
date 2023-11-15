@@ -1,4 +1,4 @@
-var especialidadeModel = require("../models/especialidade");
+var especialidadeModel = require("../models/especialidadeModel");
 
 function listar(req, res){
     especialidadeModel.listar().then(function(resultado){
