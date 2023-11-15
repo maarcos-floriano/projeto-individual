@@ -1,4 +1,4 @@
-gvar database = require("../database/config");
+var database = require("../database/config");
 
 function autenticar(registro, senha) {
   console.log(
