@@ -30,6 +30,7 @@ function maisOpcoes(idSelect) {
 }
 
 let listaCheckEspec = [];
+let listaNoCheckEspec = [];
 let idUsuario = sessionStorage.ID_USUARIO;
 
 function verificarEspecialidades() {
@@ -42,48 +43,101 @@ function verificarEspecialidades() {
       var especExiste = listaCheckEspec.indexOf(checkbox.name);
       if (especExiste == -1) {
         listaCheckEspec.push(checkbox.name);
+        return updateEspecialidades();
       }
     } else {
       var index = listaCheckEspec.indexOf(checkbox.name);
 
       if (index != -1) {
         listaCheckEspec.splice(index, 1);
+
+        if (checkbox.name != "") {
+          listaNoCheckEspec.push(checkbox.name);
+        }
+        return removerEspecialides();
       }
     }
   });
-
-  return updateEspecialidades();
+  
 }
 
-function updateEspecialidades(){
+function updateEspecialidades() {
   var idUsuario = sessionStorage.ID_USUARIO;
 
   fetch(`/especialidade/conquistar/${idUsuario}`, {
     method: "post",
     headers: {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      
-    })
-}).then(function (resposta) {
+      espec_nome: listaCheckEspec,
+      espec_modalidade: "especialidade",
+      espec_possui: 1,
+      idUsuario: idUsuario,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
 
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {
-        window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+      if (resposta.ok) {
+        window.alert(
+          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
         // finalizarAguardar();
-    } else if (resposta.status == 404) {
+      } else if (resposta.status == 404) {
         window.alert("Deu 404!");
-    } else {
-        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-    }
-}).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    // finalizarAguardar();
-});
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
+}
+function removerEspecialides() {
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/especialidade/remover/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      espec_nome: listaNoCheckEspec,
+      espec_modalidade: "especialidade",
+      espec_possui: 1,
+      idUsuario: idUsuario,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        window.alert(
+          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        // window.location = "/dashboard/mural.html";
+        // limparFormulario();
+        // finalizarAguardar();
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
 }
 
 function trocaDeTela(tela) {

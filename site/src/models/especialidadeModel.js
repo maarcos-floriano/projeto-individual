@@ -1,8 +1,8 @@
 var database = require("../database/config");
 
-function remover(idUsuario) {
+function remover(nome_espec, idUsuario) {
   var instrucao = `
-    update especialidades set espec_possui = false where fkUsuario = ${idUsuario}
+  DELETE FROM especialidades WHERE espec_nome = "${nome_espec}" AND fkUsuario = ${idUsuario};
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
