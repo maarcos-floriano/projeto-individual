@@ -52,7 +52,7 @@ function verificarEspecialidades() {
     }
   });
 
-  return console.log(`${idUsuario} Sua lista: ${listaCheckEspec.join(", ")}`);
+  return console.log(`Sua lista: ${listaCheckEspec.join(", ")}`);
 }
 
 function updateEspecialidades(){
