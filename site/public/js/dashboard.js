@@ -52,10 +52,38 @@ function verificarEspecialidades() {
     }
   });
 
-  return console.log(`${idUsuario} Sua lista: ${listaCheckEspec.join(", ")}`);
+  return updateEspecialidades();
 }
 
 function updateEspecialidades(){
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/especialidade/conquistar/${idUsuario}`, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      
+    })
+}).then(function (resposta) {
+
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {
+        window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+        // window.location = "/dashboard/mural.html";
+        // limparFormulario();
+        // finalizarAguardar();
+    } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+    } else {
+        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    }
+}).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+    // finalizarAguardar();
+});
 }
 
 function trocaDeTela(tela) {

@@ -3,14 +3,14 @@ var router = express.Router();
 
 var especialidadeController = require("../controllers/especialidadeController");
 
-router.post("/cadastrar", function (req, res) {
-    // função a ser chamada quando acessar /especialidade/cadastrar
-    especialidadeController.cadastrar(req, res);
+router.post("/conquistar/:idUsuario", function (req, res) {
+    // função a ser chamada quando acessar /especialidade/conquistar
+    especialidadeController.conquistar(req, res);
 });
 
-router.get("/listar/:idUsuario", function (req, res) {
+router.get("/remover/:idUsuario", function (req, res) {
     // função a ser chamada quando acessar /especialidade/listar
-    especialidadeController.listar(req, res);
+    especialidadeController.remover(req, res);
 });
 
 module.exports = router;
