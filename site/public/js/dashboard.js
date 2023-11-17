@@ -30,9 +30,9 @@ function maisOpcoes(idSelect) {
 }
 
 let listaCheckEspec = [];
+let idUsuario = sessionStorage.ID_USUARIO;
 
 function verificarEspecialidades() {
-  var idUsuario = sessionStorage.ID_USUARIO;
   let especialidades = document.querySelectorAll(
     '.itens input[type="checkbox"]'
   );
@@ -52,13 +52,10 @@ function verificarEspecialidades() {
     }
   });
 
-  return console.log(`Sua lista: ${listaCheckEspec.join(", ")}`);
+  return console.log(`${idUsuario} Sua lista: ${listaCheckEspec.join(", ")}`);
 }
 
 function updateEspecialidades(){
-  var idUsuario = sessionStorage.ID_USUARIO;
-
-  fetch("/usuario/listar/")
 }
 
 function trocaDeTela(tela) {
