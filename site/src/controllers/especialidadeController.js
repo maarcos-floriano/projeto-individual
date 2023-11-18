@@ -1,16 +1,16 @@
 var especialidadeModel = require("../models/especialidadeModel");
 
 function remover(req, res) {
-  var nomeEspec = req.body.espec_nome;
+  var nomeEspecNo = req.body.especNo_nome;
   var idUsuario = req.params.idUsuario;
 
   if (idUsuario == undefined) {
     res.status(400).send("Especialidade nome está undefined!");
   }
 
-  for (var i = 0; i < nomeEspec.length; i++) {
+  for (var i = 0; i < nomeEspecNo.length; i++) {
     especialidadeModel
-      .remover(nomeEspec[i], idUsuario)
+      .remover(nomeEspecNo[i], idUsuario)
       .then(function (resposta) {
         res.status(200).send("Especialidade inserida com sucesso");
       })

@@ -109,7 +109,7 @@ function removerEspecialides() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      espec_nome: listaNoCheckEspec,
+      especNo_nome: listaNoCheckEspec,
       espec_modalidade: "especialidade",
       espec_possui: 1,
       idUsuario: idUsuario,

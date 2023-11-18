@@ -8,7 +8,7 @@ router.post("/conquistar/:idUsuario", function (req, res) {
     especialidadeController.conquistar(req, res);
 });
 
-router.get("/remover/:idUsuario", function (req, res) {
+router.post("/remover/:idUsuario", function (req, res) {
     // função a ser chamada quando acessar /especialidade/remover
     especialidadeController.remover(req, res);
 });

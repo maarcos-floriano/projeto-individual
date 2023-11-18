@@ -149,7 +149,7 @@ function enviarCredenciais() {
         }
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+        alert(`${resposta}`);
         // finalizarAguardar();
       });
   
