@@ -43,14 +43,13 @@ function verificarEspecialidades() {
       var especExiste = listaCheckEspec.indexOf(checkbox.name);
       if (especExiste == -1) {
         listaCheckEspec.push(checkbox.name);
-        return updateEspecialidades();
       }
     } else {
       var index = listaCheckEspec.indexOf(checkbox.name);
 
       if (index != -1) {
         listaCheckEspec.splice(index, 1);
-
+        
         if (checkbox.name != "") {
           listaNoCheckEspec.push(checkbox.name);
         }
@@ -58,6 +57,7 @@ function verificarEspecialidades() {
       }
     }
   });
+  return updateEspecialidades();
   
 }
 
@@ -80,7 +80,7 @@ function updateEspecialidades() {
       console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        window.alert(
+        console.log(
           "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
         );
         // window.location = "/dashboard/mural.html";
@@ -119,7 +119,7 @@ function removerEspecialides() {
       console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        window.alert(
+        console.log(
           "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
         );
         // window.location = "/dashboard/mural.html";
