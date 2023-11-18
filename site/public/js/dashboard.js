@@ -22,9 +22,12 @@ function maisOpcoes(idSelect) {
       }
     }
   } else if (menu == 3) {
+    barra_progresso.value = 0;
     verificarEspecialidades();
+    verificarAtividades();
     idSelect.value = -1;
-    barra_progresso.value = listaCheckEspec.length * 2;
+    barra_progresso.value += listaCheckEspec.length * 2;
+    barra_progresso.value += listaCheckAtiv.length * 2;
     // location.reload()
   }
 }
@@ -49,7 +52,7 @@ function verificarEspecialidades() {
 
       if (index != -1) {
         listaCheckEspec.splice(index, 1);
-        
+
         if (checkbox.name != "") {
           listaNoCheckEspec.push(checkbox.name);
         }
@@ -58,7 +61,34 @@ function verificarEspecialidades() {
     }
   });
   return updateEspecialidades();
-  
+}
+
+let listaCheckAtiv = [];
+let listaNoCheckAtiv = [];
+
+function verificarAtividades() {
+  let atividades = document.querySelectorAll(
+    '#atividadesGuia input[type="checkbox"]'
+  );
+
+  atividades.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      var ativExiste = listaCheckAtiv.indexOf(checkbox.name);
+      if (ativExiste == -1) {
+        listaCheckAtiv.push(checkbox.name);
+      }
+    } else {
+      var index = listaCheckAtiv.indexOf(checkbox.name);
+
+      if (index != -1) {
+        listaCheckAtiv.splice(index, 1);
+
+        if (checkbox.name != "") {
+          listaNoCheckAtiv.push(checkbox.name);
+        }
+      }
+    }
+  });
 }
 
 function updateEspecialidades() {
