@@ -42,7 +42,23 @@ function conquistar(req, res) {
   }
 }
 
+function listar(req, res){
+  var idUsuario = req.params.idUsuario;
+
+  especialidadeModel.listar(idUsuario)
+  .then(function(resposta){
+    res.status(200).json(resposta);
+    res.json({
+      espec_nome: resposta[0].espec_nome,
+  })
+  })
+  .catch(function(erro){
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 module.exports = {
   remover,
   conquistar,
+  listar
 };

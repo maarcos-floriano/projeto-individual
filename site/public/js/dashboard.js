@@ -2,6 +2,8 @@ const monitorEspecialidades = document.getElementById("tela_especialidades");
 const monitorDashboard = document.getElementById("tela_dashboard");
 const monitorGuia = document.getElementById("tela_guia");
 
+window.onload = atualizarEspecialidades();
+
 function maisOpcoes(idSelect) {
   var menu = Number(idSelect.value);
   var direcionamentos = [
@@ -26,8 +28,9 @@ function maisOpcoes(idSelect) {
     verificarEspecialidades();
     verificarAtividades();
     idSelect.value = -1;
-    barra_progresso.value += listaCheckEspec.length * 2;
     barra_progresso.value += listaCheckAtiv.length * 2;
+    barra_progresso.value += listaCheckEspec.length * 2;
+
     // location.reload()
   }
 }
@@ -188,4 +191,45 @@ function trocaDeTela(tela) {
       monitores[2].style.display = "flex";
     }
   }
+}
+
+function atualizarEspecialidades(){
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/especialidade/listar/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        resposta.json().then(json => {
+
+          for(var i=0; i<json.length; i++){
+            var checkbox = document.querySelector(`input[name="${json[i].espec_nome}"]`);
+            checkbox.checked = true;
+
+            listaCheckEspec.push(json[i].espec_nome);
+          }
+          barra_progresso.value += listaCheckEspec.length * 2;
+      });
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
 }
