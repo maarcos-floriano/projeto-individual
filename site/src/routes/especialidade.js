@@ -13,9 +13,9 @@ router.post("/remover/:idUsuario", function (req, res) {
     especialidadeController.remover(req, res);
 });
 
-router.post("/listar/:idUsuario", function (req, res) {
+router.post("/listarEspec/:idUsuario", function (req, res) {
     // função a ser chamada quando acessar /especialidade/listar
-    especialidadeController.listar(req, res);
+    especialidadeController.listarEspec(req, res);
 });
 
 module.exports = router;

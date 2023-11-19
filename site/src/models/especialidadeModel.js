@@ -16,7 +16,7 @@ function conquistar(nomeEspec, modalidadeEspec, checkEspec, idUsuario) {
   return database.executar(instrucao);
 }
 
-function listar(idUsuario){
+function listarEspec(idUsuario){
   var instrucao = `
   SELECT espec_nome FROM especialidades WHERE fkUsuario = ${idUsuario};
     `;
@@ -28,5 +28,5 @@ function listar(idUsuario){
 module.exports = {
   conquistar,
   remover,
-  listar
+  listarEspec
 };

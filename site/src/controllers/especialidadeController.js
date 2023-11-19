@@ -42,10 +42,10 @@ function conquistar(req, res) {
   }
 }
 
-function listar(req, res){
+function listarEspec(req, res){
   var idUsuario = req.params.idUsuario;
 
-  especialidadeModel.listar(idUsuario)
+  especialidadeModel.listarEspec(idUsuario)
   .then(function(resposta){
     res.status(200).json(resposta);
     res.json({
@@ -60,5 +60,5 @@ function listar(req, res){
 module.exports = {
   remover,
   conquistar,
-  listar
+  listarEspec
 };

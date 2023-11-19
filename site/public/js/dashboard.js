@@ -195,8 +195,10 @@ function trocaDeTela(tela) {
 
 function atualizarEspecialidades(){
   var idUsuario = sessionStorage.ID_USUARIO;
+  var nome = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = nome.toUpperCase();
 
-  fetch(`/especialidade/listar/${idUsuario}`, {
+  fetch(`/especialidade/listarEspec/${idUsuario}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
