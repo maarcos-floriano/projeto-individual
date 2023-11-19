@@ -9,7 +9,7 @@
   </head>
   <body>
     <aside>
-      <h1>Titulo</h1>
+      <h1 id="b_usuario">Nome</h1>
       <ul>
         <li onclick="trocaDeTela(1)">
           <img src="" alt="" />
@@ -29,7 +29,11 @@
         </li>
       </ul>
       <figure>
-        <img src="../assets/distintivo-escoteiro_da_patria-removebg-preview.png" alt="flor-de-liz" width="100px" />
+        <img
+          src="../assets/distintivo-escoteiro_da_patria-removebg-preview.png"
+          alt="flor-de-liz"
+          width="100px"
+        />
         <progress id="barra_progresso" value="0" max="100"></progress>
       </figure>
     </aside>
@@ -56,26 +60,19 @@
       </header>
       <section class="grafico-superior">
         <article>
-          <h2>Atividades do Guia</h2>
-          <canvas></canvas>
+          <canvas id="chartGuia" width="100%"></canvas>
         </article>
         <article>
           <h2>Insignia da Modalidade</h2>
           <canvas></canvas>
         </article>
-        <article>
-          <h2>Cordões de Eficiencia</h2>
-          <canvas></canvas>
-        </article>
       </section>
       <section class="grafico-inferior">
         <article class="grafico-linha">
-          <h2>Especialidades Mensal</h2>
-          <canvas></canvas>
+          <canvas id="chartEspecMensal" width="100%"></canvas>
         </article>
         <article class="grafico-barra">
-          <h2>Insignia de Interesse Especial</h2>
-          <canvas></canvas>
+          <canvas id="chartEspecArea"></canvas>
         </article>
       </section>
     </main>
@@ -91,7 +88,10 @@
           <figure>
             <img src="../assets/flor de lis.png" width="30px" />
           </figure>
-          <select id="menuEspecialidade" onchange="maisOpcoes(menuEspecialidade)">
+          <select
+            id="menuEspecialidade"
+            onchange="maisOpcoes(menuEspecialidade)"
+          >
             <option value="0">Sobre</option>
             <option value="1">Feedback</option>
             <option value="2">Sair</option>
@@ -105,23 +105,92 @@
             <div>10</div>
           </header>
           <ul class="itens">
-            <li><input type="checkbox" id="habil_1" name="Acampamento"/>Acampamento</li>
-            <li><input type="checkbox" id="habil_2" name="Acampamento de Minimo Impacto"/>Acampamento de Minimo Impacto</li>
-            <li><input type="checkbox" id="habil_3" name="Almoxarifado"/>Almoxarifado</li>
-            <li><input type="checkbox" id="habil_4" name="Cidadania  do Mundo"/>Cidadania do Mundo</li>
-            <li><input type="checkbox" id="habil_5" name="Culinaria"/>Culinaria</li>
-            <li><input type="checkbox" id="habil_6" name="Culinaria Mateira"/>Culinaria Mateira</li>
-            <li><input type="checkbox" id="habil_7" name="Ferramentas de Corte"/>Ferramentas de Corte</li>
-            <li><input type="checkbox" id="habil_8" name="Fogo de Conselho"/>Fogo de Conselho</li>
-            <li><input type="checkbox" id="habil_9" name="Historia do Escotismo"/>Historia do Escotismo</li>
-            <li><input type="checkbox" id="habil_10" name="Lenhador"/>Lenhador</li>
-            <li><input type="checkbox" id="habil_11" name="Marinharia"/>Marinharia</li>
-            <li><input type="checkbox" id="habil_12" name="Pioneiria"/>Pioneiria</li>
-            <li><input type="checkbox" id="habil_13" name="Rastreamento"/>Rastreamento</li>
-            <li><input type="checkbox" id="habil_14" name="Tecnicas de Sapa"/>Tecnicas de Sapa</li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_1"
+                name="Acampamento"
+              />Acampamento
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_2"
+                name="Acampamento de Minimo Impacto"
+              />Acampamento de Minimo Impacto
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_3"
+                name="Almoxarifado"
+              />Almoxarifado
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_4"
+                name="Cidadania  do Mundo"
+              />Cidadania do Mundo
+            </li>
+            <li>
+              <input type="checkbox" id="habil_5" name="Culinaria" />Culinaria
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_6"
+                name="Culinaria Mateira"
+              />Culinaria Mateira
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_7"
+                name="Ferramentas de Corte"
+              />Ferramentas de Corte
+            </li>
+            <li>
+              <input type="checkbox" id="habil_8" name="Fogo de Conselho" />Fogo
+              de Conselho
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_9"
+                name="Historia do Escotismo"
+              />Historia do Escotismo
+            </li>
+            <li>
+              <input type="checkbox" id="habil_10" name="Lenhador" />Lenhador
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_11"
+                name="Marinharia"
+              />Marinharia
+            </li>
+            <li>
+              <input type="checkbox" id="habil_12" name="Pioneiria" />Pioneiria
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_13"
+                name="Rastreamento"
+              />Rastreamento
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="habil_14"
+                name="Tecnicas de Sapa"
+              />Tecnicas de Sapa
+            </li>
           </ul>
         </article>
-        <article style="display: none;">
+        <article style="display: none">
           <header>
             <div>10</div>
           </header>
@@ -153,7 +222,7 @@
         </article>
       </section>
       <section>
-        <article style="display: none;">
+        <article style="display: none">
           <header>
             <div>10</div>
           </header>
@@ -208,7 +277,7 @@
             <li><input type="checkbox" />Mitologia</li>
           </ul>
         </article>
-        <article style="display: none;">
+        <article style="display: none">
           <header>
             <div>10</div>
           </header>
@@ -256,7 +325,7 @@
         </article>
       </section>
       <section>
-        <article style="display: none;">
+        <article style="display: none">
           <header>
             <div>10</div>
           </header>
@@ -351,43 +420,93 @@
         <article>
           <ol id="atividadesGuia">
             <li>
-              <input type="checkbox" name="Conhecer a estrutura da Tropa Senior"/>
+              <input
+                type="checkbox"
+                name="Conhecer a estrutura da Tropa Senior"
+              />
               <p>1 - Conhecer a estrutura da Tropa Senior.</p>
             </li>
             <li>
-              <input type="checkbox" name="Conhecer os membros da sua Patrulha e os seus encargos" id="" />
+              <input
+                type="checkbox"
+                name="Conhecer os membros da sua Patrulha e os seus encargos"
+                id=""
+              />
               <p>2 - Conhecer os membros da sua Patrulha e os seus encargos.</p>
             </li>
             <li>
-              <input type="checkbox" name="Entender e usar o lema do Escoteiro, o sinal, a saudação e o aperto de mão" id="" />
-              <p>3 - Entender e usar o lema do Escoteiro, o sinal, a saudação e o aperto de mão.</p>
+              <input
+                type="checkbox"
+                name="Entender e usar o lema do Escoteiro, o sinal, a saudação e o aperto de mão"
+                id=""
+              />
+              <p>
+                3 - Entender e usar o lema do Escoteiro, o sinal, a saudação e o
+                aperto de mão.
+              </p>
             </li>
             <li>
-              <input type="checkbox" name="Reconhecer os sinais manuais e apitos de comandos" id="" />
+              <input
+                type="checkbox"
+                name="Reconhecer os sinais manuais e apitos de comandos"
+                id=""
+              />
               <p>4 - Reconhecer os sinais manuais e apitos de comandos.</p>
             </li>
             <li>
-              <input type="checkbox" name="Saber o grito da sua patrulha e conhecer o seu significado" id="" />
-              <p>5 - Saber o grito da sua patrulha e conhecer o seu significado.</p>
+              <input
+                type="checkbox"
+                name="Saber o grito da sua patrulha e conhecer o seu significado"
+                id=""
+              />
+              <p>
+                5 - Saber o grito da sua patrulha e conhecer o seu significado.
+              </p>
             </li>
             <li>
-              <input type="checkbox" name="Conhecer o uniforme escoteiro e o significado dos seus distintivos" id="" />
-              <p>6 - Conhecer o uniforme escoteiro e o significado dos seus distintivos</p>
+              <input
+                type="checkbox"
+                name="Conhecer o uniforme escoteiro e o significado dos seus distintivos"
+                id=""
+              />
+              <p>
+                6 - Conhecer o uniforme escoteiro e o significado dos seus
+                distintivos
+              </p>
             </li>
             <li>
-              <input type="checkbox" name="Conhecer o sistema de progressão do Ramo Senior" id="" />
+              <input
+                type="checkbox"
+                name="Conhecer o sistema de progressão do Ramo Senior"
+                id=""
+              />
               <p>7 - Conhecer o sistema de progressão do Ramo Senior.</p>
             </li>
             <li>
-              <input type="checkbox" name="Saber como hastear e arriar a Bandeira Nacional" id="" />
+              <input
+                type="checkbox"
+                name="Saber como hastear e arriar a Bandeira Nacional"
+                id=""
+              />
               <p>8 - Saber como hastear e arriar a Bandeira Nacional.</p>
             </li>
             <li>
-              <input type="checkbox" name="Conhecer os aspectos mais importantes da historia do Escotismo e do seu Fundador" id="" />
-              <p>9 - Conhecer os aspectos mais importantes da historia do Escotismo e do seu Fundador</p>
+              <input
+                type="checkbox"
+                name="Conhecer os aspectos mais importantes da historia do Escotismo e do seu Fundador"
+                id=""
+              />
+              <p>
+                9 - Conhecer os aspectos mais importantes da historia do
+                Escotismo e do seu Fundador
+              </p>
             </li>
             <li>
-              <input type="checkbox" name="Conhecer a Lei e a Promessa Escoteira" id="" />
+              <input
+                type="checkbox"
+                name="Conhecer a Lei e a Promessa Escoteira"
+                id=""
+              />
               <p>10 - Conhecer a Lei e a Promessa Escoteira.</p>
             </li>
           </ol>
@@ -397,3 +516,86 @@
   </body>
 </html>
 <script src="../js/dashboard.js"></script>
+<script src="../js/sessao.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+  const chartGuia = document.getElementById("chartGuia");
+  const chartEspecMensal = document.getElementById("chartEspecMensal");
+  const chartEspecArea = document.getElementById("chartEspecArea");
+
+  new Chart(chartEspecArea, {
+    type: "bar",
+    data: {
+      labels: ["Habil. Escoteira", "Desportos", "Cultura"],
+      datasets: [
+        {
+          label: "Especialidades",
+          data: [1, 2, 3],
+          backgroundColor: ["green"],
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Especialidades Area",
+          position: {
+            right: "0",
+          },
+        },
+      },
+    },
+  });
+
+  new Chart(chartEspecMensal, {
+    type: "line",
+    data: {
+      labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio"],
+      datasets: [
+        {
+          label: "Especialidades",
+          data: [1, 2, 3, 4, 5],
+          backgroundColor: ["green"],
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Especialidades Mensal",
+          position: {
+            right: "0",
+          },
+        },
+      },
+    },
+  });
+
+  new Chart(chartGuia, {
+    type: "doughnut",
+    data: {
+      labels: ["Concliu", "Não Concluiu"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [3, 7],
+          backgroundColor: ["green", "blue"],
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Atividades Guia",
+          position: {
+            right: "0",
+          },
+        },
+      },
+    },
+  });
+</script>
