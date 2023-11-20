@@ -20,6 +20,7 @@ function maisOpcoes(idSelect) {
         } else {
           window.location.assign(direcionamentos[i]);
           idSelect.value = -1;
+          sessionStorage.clear();
         }
       }
     }

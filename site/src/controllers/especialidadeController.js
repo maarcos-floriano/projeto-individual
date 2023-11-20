@@ -8,16 +8,17 @@ function remover(req, res) {
     res.status(400).send("Especialidade nome está undefined!");
   }
 
-  for (var i = 0; i < nomeEspecNo.length; i++) {
-    especialidadeModel
-      .remover(nomeEspecNo[i], idUsuario)
-      .then(function (resposta) {
-        res.status(200).send("Especialidade inserida com sucesso");
-      })
-      .catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-      });
-  }
+  var promises = nomeEspecNo.map(function (nome) {
+    return especialidadeModel.remover(nome, idUsuario);
+  });
+
+  Promise.all(promises)
+    .then(function (respostas) {
+      res.status(200).send("Especialidades removidas com sucesso");
+    })
+    .catch(function (erro) {
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function conquistar(req, res) {
@@ -27,19 +28,20 @@ function conquistar(req, res) {
   var idUsuario = req.params.idUsuario;
 
   if (idUsuario == undefined) {
-    res.status(400).send("Especialidade nome está undefined!");
+    return res.status(400).send("Especialidade nome está undefined!");
   }
+  
+  var promises = nomeEspec.map(function(nome) {
+    return especialidadeModel.conquistar(nome, modalidadeEspec, checkEspec, idUsuario);
+  });
 
-  for (var i = 0; i < nomeEspec.length; i++) {
-    especialidadeModel
-      .conquistar(nomeEspec[i], modalidadeEspec, checkEspec, idUsuario)
-      .then(function (resposta) {
-        res.status(200).send("Especialidade inserida com sucesso");
-      })
-      .catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-      });
-  }
+  Promise.all(promises)
+    .then(function (respostas) {
+      res.status(200).send("Especialidades inseridas com sucesso");
+    })
+    .catch(function (erro) {
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function listarEspec(req, res){
@@ -62,3 +64,4 @@ module.exports = {
   conquistar,
   listarEspec
 };
+
