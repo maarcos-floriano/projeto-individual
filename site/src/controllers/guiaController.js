@@ -2,6 +2,7 @@ var guiaModel = require('../models/guiaModel.js');
 
 function listar(req, res) {
     var idUsuario = req.params.idUsuario;
+    var guia_nome = req.body.guia_nome;
     
     if (idUsuario == undefined) {
         res.status(400).send('Guia nome está undefined!');
@@ -14,22 +15,43 @@ function listar(req, res) {
     });
 }
 
-function conquistar(req, res) {
-    var nomeGuia = req.body.nomeGuia;
+function remover(req, res){
+    var nomeGuiaNo = req.body.guiaNo_nome;
     var idUsuario = req.params.idUsuario;
     
-    if (nomeEspec == undefined || idUsuario == undefined) {
+    if (nomeGuiaNo == undefined || idUsuario == undefined) {
         res.status(400).send('Guia nome está undefined!');
     }
+
+    for(var i = 0; i < nomeGuiaNo.length; i++){
+        guiaModel.remover(nomeGuiaNo[i], idUsuario).then(function (resposta) {
+            res.status(200).json(resposta);
+        }).catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+}
+
+function conquistar(req, res) {
+    var guia_nome = req.body.guia_nome;
+    var idUsuario = req.params.idUsuario;
     
-    guiaModel.conquistar(nomeEspec, idUsuario).then(function (resposta) {
-        res.status(200).json(resposta);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    });
+    if (guia_nome == undefined || idUsuario == undefined) {
+        res.status(400).send('Guia nome está undefined!');
+    }
+
+    for(var i = 0; i < guia_nome.length; i++){
+        guiaModel.conquistar(guia_nome[i], idUsuario).then(function (resposta) {
+            res.status(200).json(resposta);
+        }).catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
 }
 
 module.exports = {
     listar,
-    conquistar
+    conquistar,
+    remover
 };

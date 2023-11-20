@@ -88,8 +88,12 @@ function verificarAtividades() {
 
         if (checkbox.name != "") {
           listaNoCheckAtiv.push(checkbox.name);
+
+          return removerAtividades();
         }
       }
+
+      return updateAtividades();
     }
   });
 }
@@ -114,7 +118,7 @@ function updateEspecialidades() {
 
       if (resposta.ok) {
         console.log(
-          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de Especialidades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
         );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
@@ -153,7 +157,7 @@ function removerEspecialides() {
 
       if (resposta.ok) {
         console.log(
-          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de remover Especialidades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
         );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
@@ -167,6 +171,83 @@ function removerEspecialides() {
         );
       }
     })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
+}
+
+function updateAtividades() {
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/guia/conquistar/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      guia_nome: listaCheckAtiv,
+      idUsuario: idUsuario,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post de Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        // window.location = "/dashboard/mural.html";
+        // limparFormulario();
+        // finalizarAguardar();
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
+}
+
+function removerAtividades() {
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/guia/remover/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      guiaNo_nome: listaNoCheckAtiv,
+      idUsuario: idUsuario,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post de remover Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        // window.location = "/dashboard/mural.html";
+        // limparFormulario();
+        // finalizarAguardar();
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    }
+    )
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
       // finalizarAguardar();
