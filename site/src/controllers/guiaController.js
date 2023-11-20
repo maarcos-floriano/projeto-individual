@@ -8,11 +8,13 @@ function listar(req, res) {
         res.status(400).send('Guia nome está undefined!');
     }
     
-    guiaModel.listar(idUsuario).then(function (resposta) {
-        res.status(200).json(resposta);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    });
+    guiaModel.listar(idUsuario)
+        .then(function (resposta) {
+            res.status(200).json(resposta);
+        })
+        .catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
 function remover(req, res){
@@ -23,14 +25,18 @@ function remover(req, res){
         res.status(400).send('Guia nome está undefined!');
     }
 
+    var promises = [];
     for(var i = 0; i < nomeGuiaNo.length; i++){
-        guiaModel.remover(nomeGuiaNo[i], idUsuario).then(function (resposta) {
-            res.status(200).json(resposta);
-        }).catch(function (erro) {
-            res.status(500).json(erro.sqlMessage);
-        });
+        promises.push(guiaModel.remover(nomeGuiaNo[i], idUsuario));
     }
 
+    Promise.all(promises)
+        .then(function (respostas) {
+            res.status(200).json(respostas);
+        })
+        .catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
 function conquistar(req, res) {
@@ -41,13 +47,18 @@ function conquistar(req, res) {
         res.status(400).send('Guia nome está undefined!');
     }
 
+    var promises = [];
     for(var i = 0; i < guia_nome.length; i++){
-        guiaModel.conquistar(guia_nome[i], idUsuario).then(function (resposta) {
-            res.status(200).json(resposta);
-        }).catch(function (erro) {
+        promises.push(guiaModel.conquistar(guia_nome[i], idUsuario));
+    }
+
+    Promise.all(promises)
+        .then(function (respostas) {
+            res.status(200).json(respostas);
+        })
+        .catch(function (erro) {
             res.status(500).json(erro.sqlMessage);
         });
-    }
 }
 
 module.exports = {
