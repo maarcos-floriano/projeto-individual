@@ -326,3 +326,7 @@ function atualizarEspecialidades(){
       // finalizarAguardar();
     });
 }
+
+function atualizarAtividade(){
+  
+}

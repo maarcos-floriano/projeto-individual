@@ -136,7 +136,7 @@ header .nav {
     width: 90%;
     height: 30%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .main-especialidades section article{
@@ -181,7 +181,7 @@ section article header div{
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-evenly;
 }
 .main-atividades-guia section article{
@@ -195,6 +195,14 @@ section article header div{
 .main-atividades-guia section article ol li{
   display: flex;
   align-items: center;
+  height: 30px;
+}
+.main-atividades-guia section article ol li p{
+  font-size: 15px;
+  font-weight: 400;
+  color: #2C4678;
+  text-align: justify;
+
 }
 .main-insignia{
   display: flex;
