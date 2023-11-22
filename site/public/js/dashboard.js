@@ -3,7 +3,7 @@ const monitorDashboard = document.getElementById("tela_dashboard");
 const monitorGuia = document.getElementById("tela_guia");
 const monitorInsignia = document.getElementById("tela_insignia");
 
-window.onload = atualizarEspecialidades();
+window.onload = atualizarEspecialidades(), atualizarAtividade();
 
 function maisOpcoes(idSelect) {
   var menu = Number(idSelect.value);
@@ -328,5 +328,44 @@ function atualizarEspecialidades(){
 }
 
 function atualizarAtividade(){
-  
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nome = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = nome.toUpperCase();
+
+  fetch(`/guia/listar/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        resposta.json().then(json => {
+
+          for(var i=0; i<json.length; i++){
+            var checkbox = document.querySelector(`input[name="${json[i].guia_nome}"]`);
+            checkbox.checked = true;
+
+            listaCheckAtiv.push(json[i].guia_nome);
+          }
+          barra_progresso.value += listaCheckAtiv.length * 2;
+      });
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
 }

@@ -2,7 +2,7 @@ var guiaModel = require('../models/guiaModel.js');
 
 function listar(req, res) {
     var idUsuario = req.params.idUsuario;
-    var guia_nome = req.body.guia_nome;
+    // var guia_nome = req.body.guia_nome;
     
     if (idUsuario == undefined) {
         res.status(400).send('Guia nome está undefined!');
