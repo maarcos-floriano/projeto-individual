@@ -667,36 +667,56 @@
           <div class="pergunta">
             <div class="enunciado">
               <h3>Questao 1:</h3>
-              <p id="perguntaUm">Participar de pelo menos dois cursos ou seminários de sua preferência, cujos temas sejam relevantes para sua vida acadêmica ou carreira profissional. Deverá ser apresentado um resumo de sua participação ao Clã Pioneiro ou algum tipo de produção que descreva sua participação e os assuntos abordados.</p>
+              <p id="perguntaUm">
+                Participar de pelo menos dois cursos ou seminários de sua
+                preferência, cujos temas sejam relevantes para sua vida
+                acadêmica ou carreira profissional. Deverá ser apresentado um
+                resumo de sua participação ao Clã Pioneiro ou algum tipo de
+                produção que descreva sua participação e os assuntos abordados.
+              </p>
             </div>
             <div class="respostas">
-              <input type="checkbox" name="" id="">
+              <input
+                type="checkbox"
+                name="Participar de pelo menos dois cursos ou seminários de sua preferência"
+                id="insigniaUm"
+              />
             </div>
           </div>
           <div class="pergunta">
             <div class="enunciado">
               <h3>Questao 2:</h3>
               <p id="perguntaDois">
-                Montar seu currículo profissional, relacionando suas aptidões, iniciativas de formação pessoas e outras experiências relevantes.
+                Montar seu currículo profissional, relacionando suas aptidões,
+                iniciativas de formação pessoas e outras experiências
+                relevantes.
               </p>
             </div>
             <div class="respostas">
-              <input type="checkbox" name="" id="">
+              <input
+                type="checkbox"
+                name="Montar seu currículo profissional"
+                id="insigniaDois"
+              />
             </div>
           </div>
           <div class="pergunta">
             <div class="enunciado">
               <h3>Questao 3:</h3>
               <p id="perguntaTres">
-                Redigir um trabalho acadêmico, com tema de sua livre escolha, utilizando as normas de Metodologia Científica.
+                Redigir um trabalho acadêmico, com tema de sua livre escolha,
+                utilizando as normas de Metodologia Científica.
               </p>
             </div>
             <div class="respostas">
-            </div><input type="checkbox" name="" id="">
+              <input
+                type="checkbox"
+                name="Redigir um trabalho acadêmico"
+                id="insigniaTres"
+              />
+            </div>
           </div>
-          <button onclick="validarRespostas()">
-            Validar Respostas
-          </button>
+          <button onclick="validarRespostas()">Validar Respostas</button>
         </form>
       </section>
     </main>
@@ -709,6 +729,10 @@
   const chartGuia = document.getElementById("chartGuia");
   const chartEspecMensal = document.getElementById("chartEspecMensal");
   const chartEspecArea = document.getElementById("chartEspecArea");
+
+  window.onload = function () {
+    atualizarAtividade();
+  };
 
   new Chart(chartEspecArea, {
     type: "bar",
@@ -760,7 +784,11 @@
       },
     },
   });
+  listaAtiv = [];
+  atividadesFeita = Number(listaAtiv.length);
 
+  dataGuia = [atividadesFeita, 10]
+  
   new Chart(chartGuia, {
     type: "doughnut",
     data: {
@@ -768,7 +796,7 @@
       datasets: [
         {
           label: "# of Votes",
-          data: [10, 5],
+          data: dataGuia,
           backgroundColor: ["green", "blue"],
         },
       ],
@@ -785,4 +813,46 @@
       },
     },
   });
+
+  function atualizarAtividade(){
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nome = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = nome.toUpperCase();
+
+  fetch(`/guia/listar/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        resposta.json().then(json => {
+
+          for(var i=0; i<json.length; i++){
+            var checkbox = document.querySelector(`input[name="${json[i].guia_nome}"]`);
+            checkbox.checked = true;
+
+            listaAtiv.push(json[i].guia_nome);
+          }
+      });
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
+}
 </script>
