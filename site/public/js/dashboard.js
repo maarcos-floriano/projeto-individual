@@ -317,3 +317,7 @@ function atualizarEspecialidades(){
       // finalizarAguardar();
     });
 }
+
+function validarRespostas(){
+  
+}
