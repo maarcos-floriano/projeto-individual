@@ -23,7 +23,7 @@
           <img src="" alt="" />
           <p>Atividades do Guia</p>
         </li>
-        <li>
+        <li onclick="trocaDeTela(3)">
           <img src="" alt="" />
           <p>Insignia da Modalidade</p>
         </li>
@@ -643,78 +643,62 @@
       </section>
     </main>
     <main class="main-insignia" id="tela_insignia">
-        <header class="cabecalho">
-          <div class="titulo">
-            <h1>Progresso da sua Liz de Ouro</h1>
+      <header class="cabecalho">
+        <div class="titulo">
+          <h1>Progresso da sua Liz de Ouro</h1>
+        </div>
+        <div class="nav">
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <figure>
+            <img src="../assets/flor de lis.png" width="30px" />
+          </figure>
+          <select id="menuInsignia" onchange="maisOpcoes(menuInsignia)">
+            <option value="0">Sobre</option>
+            <option value="1">Feedback</option>
+            <option value="2">Sair</option>
+            <option value="3">Sincronizar</option>
+          </select>
+        </div>
+      </header>
+      <section>
+        <form>
+          <div class="pergunta">
+            <div class="enunciado">
+              <h3>Questao 1:</h3>
+              <p id="perguntaUm">Participar de pelo menos dois cursos ou seminários de sua preferência, cujos temas sejam relevantes para sua vida acadêmica ou carreira profissional. Deverá ser apresentado um resumo de sua participação ao Clã Pioneiro ou algum tipo de produção que descreva sua participação e os assuntos abordados.</p>
+            </div>
+            <div class="respostas">
+              <input type="checkbox" name="" id="">
+            </div>
           </div>
-          <div class="nav">
-            <figure>
-              <img src="../assets/flor de lis.png" width="30px" />
-            </figure>
-            <figure>
-              <img src="../assets/flor de lis.png" width="30px" />
-            </figure>
-            <select id="menuInsignia" onchange="maisOpcoes(menuInsignia)">
-              <option value="0">Sobre</option>
-              <option value="1">Feedback</option>
-              <option value="2">Sair</option>
-              <option value="3">Sincronizar</option>
-            </select>
+          <div class="pergunta">
+            <div class="enunciado">
+              <h3>Questao 2:</h3>
+              <p id="perguntaDois">
+                Montar seu currículo profissional, relacionando suas aptidões, iniciativas de formação pessoas e outras experiências relevantes.
+              </p>
+            </div>
+            <div class="respostas">
+              <input type="checkbox" name="" id="">
+            </div>
           </div>
-        </header>
-        <section>
-          <form>
-            <div class="pergunta">
-              <div class="enunciado">
-                <h3>Questao 1:</h3>
-                <p id="perguntaUm">True or False: The Earth is flat.</p>
-              </div>
-              <div class="respostas">
-                <input type="radio" id="q1_true" name="q1" value="true" />
-                <label for="q1_true">Verdadeiro</label>
-                <input type="radio" id="q1_false" name="q1" value="false" />
-                <label for="q1_false">Falso</label>
-              </div>
+          <div class="pergunta">
+            <div class="enunciado">
+              <h3>Questao 3:</h3>
+              <p id="perguntaTres">
+                Redigir um trabalho acadêmico, com tema de sua livre escolha, utilizando as normas de Metodologia Científica.
+              </p>
             </div>
-            <div class="pergunta">
-              <div class="enunciado">
-                <h3>Questao 2:</h3>
-                <p id="perguntaDois">True or False: Water boils at 100 degrees Celsius.</p>
-              </div>
-              <div class="respostas">
-                <input type="radio" id="q2_true" name="q2" value="true" />
-                <label for="q2_true">Verdadeiro</label>
-                <input type="radio" id="q2_false" name="q2" value="false" />
-                <label for="q2_false">Falso</label>
-              </div>
-            </div>
-            <div class="pergunta">
-              <div class="enunciado">
-                <h3>Questao 3:</h3>
-                <p id="perguntaTres">True or False: The capital of France is Rome.</p>
-              </div>
-              <div class="respostas">
-                <input type="radio" id="q3_true" name="q3" value="true" />
-                <label for="q3_true">Verdadeiro</label>
-                <input type="radio" id="q3_false" name="q3" value="false" />
-                <label for="q3_false">Falso</label>
-              </div>
-            </div>
-            <div class="pergunta">
-              <div class="enunciado">
-                <h3>Questao 4:</h3>
-                <p id="perguntaQuatro">True or False: JavaScript is a programming language.</p>
-              </div>
-              <respostas>
-                <input type="radio" id="q4_true" name="q4" value="true" />
-                <label for="q4_true">Verdadeiro</label>
-                <input type="radio" id="q4_false" name="q4" value="false" />
-                <label for="q4_false">Falso</label>
-              </respostas>
-            </div>
-            <button type="submit" onclick="validarRespostas()">Validar Respostas</button>
-          </form>
-        </section>
+            <div class="respostas">
+            </div><input type="checkbox" name="" id="">
+          </div>
+          <button onclick="validarRespostas()">
+            Validar Respostas
+          </button>
+        </form>
+      </section>
     </main>
   </body>
 </html>

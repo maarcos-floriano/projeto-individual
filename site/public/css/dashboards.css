@@ -213,7 +213,7 @@ section article header div{
   justify-content: space-evenly;
 }
 .main-insignia section form{
-  width: 40%;
+  width: 80%;
   height: 80%;
   display: flex;
   flex-direction: column;
@@ -235,4 +235,15 @@ section form .pergunta{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.enunciado h3{
+  font-size: 20px;
+  font-weight: 600;
+  color: #2C4678;
+}
+.enunciado p{
+  font-size: 15px;
+  font-weight: 400;
+  color: #2C4678;
+  text-align: justify;
 }

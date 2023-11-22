@@ -1,6 +1,7 @@
 const monitorEspecialidades = document.getElementById("tela_especialidades");
 const monitorDashboard = document.getElementById("tela_dashboard");
 const monitorGuia = document.getElementById("tela_guia");
+const monitorInsignia = document.getElementById("tela_insignia");
 
 window.onload = atualizarEspecialidades();
 
@@ -256,21 +257,29 @@ function removerAtividades() {
 }
 
 function trocaDeTela(tela) {
-  var monitores = [monitorEspecialidades, monitorDashboard, monitorGuia];
+  var monitores = [monitorEspecialidades, monitorDashboard, monitorGuia, monitorInsignia];
 
   for (var i = 0; i < monitores.length; i++) {
     if (tela == 0) {
       monitores[0].style.display = "flex";
       monitores[1].style.display = "none";
       monitores[2].style.display = "none";
+      monitores[3].style.display = "none";
     } else if (tela == 1) {
       monitores[0].style.display = "none";
       monitores[1].style.display = "flex";
       monitores[2].style.display = "none";
-    } else {
+      monitores[3].style.display = "none";
+    } else if (tela == 2) {
       monitores[0].style.display = "none";
       monitores[1].style.display = "none";
       monitores[2].style.display = "flex";
+      monitores[3].style.display = "none";
+    }else{
+      monitores[0].style.display = "none";
+      monitores[1].style.display = "none";
+      monitores[2].style.display = "none";
+      monitores[3].style.display = "flex";
     }
   }
 }
@@ -316,8 +325,4 @@ function atualizarEspecialidades(){
       console.log(`#ERRO: ${resposta}`);
       // finalizarAguardar();
     });
-}
-
-function validarRespostas(){
-  
 }
