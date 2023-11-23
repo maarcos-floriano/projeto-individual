@@ -29,6 +29,7 @@ function maisOpcoes(idSelect) {
     barra_progresso.value = 0;
     verificarEspecialidades();
     verificarAtividades();
+    verificarInsignias();
     idSelect.value = -1;
     barra_progresso.value += listaCheckAtiv.length * 2;
     barra_progresso.value += listaCheckEspec.length * 2;
@@ -96,6 +97,38 @@ function verificarAtividades() {
       }
 
       return updateAtividades();
+    }
+  });
+}
+
+listaCheckInsignia = [];
+listaNoCheckInsignia = [];
+
+function verificarInsignias(){
+  let insignia = document.querySelectorAll(
+    '.pergunta input[type="checkbox"]'
+  );
+
+  insignia.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      var insigniaExiste = listaCheckInsignia.indexOf(checkbox.name);
+      if (insigniaExiste == -1) {
+        listaCheckInsignia.push(checkbox.name);
+      }
+    } else {
+      var index = listaCheckInsignia.indexOf(checkbox.name);
+
+      if (index != -1) {
+        listaCheckInsignia.splice(index, 1);
+
+        if (checkbox.name != "") {
+          listaNoCheckInsignia.push(checkbox.name);
+
+          return removerinsignia();
+        }
+      }
+
+      return updateInsignia();
     }
   });
 }
@@ -355,6 +388,44 @@ function atualizarAtividade(){
           }
           barra_progresso.value += listaCheckAtiv.length * 2;
       });
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
+}
+
+function updateInsignia(){
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/insignia/conquistar/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      insignia_desc: listaCheckInsignia,
+      idUsuario: idUsuario,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post de Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        // window.location = "/dashboard/mural.html";
+        // limparFormulario();
+        // finalizarAguardar();
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
