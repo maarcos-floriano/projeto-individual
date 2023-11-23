@@ -3,7 +3,7 @@ const monitorDashboard = document.getElementById("tela_dashboard");
 const monitorGuia = document.getElementById("tela_guia");
 const monitorInsignia = document.getElementById("tela_insignia");
 
-window.onload = atualizarEspecialidades(), atualizarAtividade();
+window.onload = atualizar();
 
 function maisOpcoes(idSelect) {
   var menu = Number(idSelect.value);
@@ -440,3 +440,91 @@ function updateInsignia(){
       // finalizarAguardar();
     });
 }
+
+function removerinsignia(){
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/insignia/remover/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      insigniaNo_desc: listaNoCheckInsignia,
+      idUsuario: idUsuario,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post de remover Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        // window.location = "/dashboard/mural.html";
+        // limparFormulario();
+        // finalizarAguardar();
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    }
+    )
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
+}
+
+function atualizarInsignia(){
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nome = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = nome.toUpperCase();
+
+  fetch(`/insignia/listar/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        resposta.json().then(json => {
+
+          for(var i=0; i<json.length; i++){
+            var checkbox = document.querySelector(`input[name="${json[i].insignia_desc}"]`);
+            checkbox.checked = true;
+
+            listaCheckInsignia.push(json[i].insignia_desc);
+          }
+          barra_progresso.value += listaCheckInsignia.length * 2;
+      });
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      // finalizarAguardar();
+    });
+}
+
+function atualizar(){
+  atualizarEspecialidades();
+  atualizarAtividade();
+  atualizarInsignia();
+} 

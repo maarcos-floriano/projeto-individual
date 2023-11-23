@@ -5,7 +5,7 @@ function listar(req, res) {
     // var insignia_desc = req.body.insignia_desc;
     
     if (idUsuario == undefined) {
-        res.status(400).send('Guia nome está undefined!');
+        res.status(400).send('Insiginia nome está undefined!');
     }
     
     insigniaModel.listar(idUsuario)
@@ -18,16 +18,16 @@ function listar(req, res) {
 }
 
 function remover(req, res){
-    var nomeInsigniaNo = req.body.insigniaNo_nome;
+    var descInsigniaNo = req.body.insigniaNo_desc;
     var idUsuario = req.params.idUsuario;
     
-    if (nomeInsigniaNo == undefined || idUsuario == undefined) {
+    if (descInsigniaNo == undefined || idUsuario == undefined) {
         res.status(400).send('Guia nome está undefined!');
     }
 
     var promises = [];
     for(var i = 0; i < nomeInsigniaNo.length; i++){
-        promises.push(insigniaModel.remover(nomeInsigniaNo[i], idUsuario));
+        promises.push(insigniaModel.remover(descInsigniaNo[i], idUsuario));
     }
 
     Promise.all(promises)

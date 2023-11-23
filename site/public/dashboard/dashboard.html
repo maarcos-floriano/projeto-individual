@@ -785,8 +785,8 @@
   });
   listaAtiv = [];
 
-  dataGuia = [listaAtiv.length, 10]
-  
+  dataGuia = [listaAtiv.length, 10];
+
   new Chart(chartGuia, {
     type: "doughnut",
     data: {
@@ -812,45 +812,46 @@
     },
   });
 
-  function atualizarAtividade(){
-  var idUsuario = sessionStorage.ID_USUARIO;
-  var nome = sessionStorage.NOME_USUARIO;
-  b_usuario.innerHTML = nome.toUpperCase();
+  function atualizarAtividade() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = nome.toUpperCase();
 
-  fetch(`/guia/listar/${idUsuario}`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(function (resposta) {
-      console.log("resposta: ", resposta);
-
-      if (resposta.ok) {
-        console.log(
-          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
-        );
-        resposta.json().then(json => {
-
-          for(var i=0; i<json.length; i++){
-            var checkbox = document.querySelector(`input[name="${json[i].guia_nome}"]`);
-            checkbox.checked = true;
-
-            listaAtiv.push(json[i].guia_nome);
-          }
-      });
-      } else if (resposta.status == 404) {
-        window.alert("Deu 404!");
-      } else {
-        throw (
-          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
-          resposta.status
-        );
-      }
+    fetch(`/guia/listar/${idUsuario}`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
-      // finalizarAguardar();
-    });
-}
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log(
+            "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          );
+          resposta.json().then((json) => {
+            for (var i = 0; i < json.length; i++) {
+              var checkbox = document.querySelector(
+                `input[name="${json[i].guia_nome}"]`
+              );
+              checkbox.checked = true;
+
+              listaAtiv.push(json[i].guia_nome);
+            }
+          });
+        } else if (resposta.status == 404) {
+          window.alert("Deu 404!");
+        } else {
+          throw (
+            "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+            resposta.status
+          );
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+  }
 </script>

@@ -13,7 +13,7 @@ function conquistar(insignia_desc, idUsuario) {
   return database.executar(instrucao);
 }
 
-function remover(guia_nome, idUsuario) {
+function remover(insignia_desc, idUsuario) {
     var instrucao = `delete from insignia where insignia_desc = "${insignia_desc}" and fkUsuario = ${idUsuario};`;
     console.log("Executando " + instrucao);
     return database.executar(instrucao);
