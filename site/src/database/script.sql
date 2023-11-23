@@ -1,3 +1,5 @@
+DROP DATABASE escoteirosDoBrasil;
+
 CREATE DATABASE escoteirosDoBrasil;
 
 use escoteirosDoBrasil;
@@ -10,8 +12,6 @@ usr_email VARCHAR(255) NOT NULL,
 usr_senha VARCHAR(255) NOT NULL,
 usr_patrulha int NOT NULL
 )auto_increment=100;
-
-select * from usuarios;
 
 CREATE table patrulhas (
 	idPatrulha int PRIMARY KEY,
@@ -32,7 +32,7 @@ CREATE table LizDeOuro (
 
 CREATE table especialidades (
 	idEspec int PRIMARY KEY auto_increment,
-	espec_nome VARCHAR(45),
+	espec_nome VARCHAR(45) unique,
 	espec_modalidade VARCHAR(45),
     espec_dtConquista DATE,
     espec_possui boolean,
@@ -41,9 +41,28 @@ CREATE table especialidades (
     foreign key (fkUsuario) references usuarios(idUsuario)
 );
 
-insert into especialidades(espec_nome, espec_modalidade, espec_possui, fkUsuario) values
-("Acampamento", "Hab.Escoteira", true, 100);
+create table guia (
+idGuia int primary key auto_increment,
+guia_nome varchar(250) unique,
+fkUsuario int,
+foreign key (fkUsuario) references usuarios(idUsuario)
+);
 
-select espec_nome as Possui from especialidades where espec_possui = true AND fkUsuario = 100;
+create table insignia (
+idInsignia int primary key auto_increment,
+insignia_desc varchar(300) unique,
+fkUsuario int,
+constraint idUser foreign key (fkUsuario) references usuarios(idUsuario)
+);
 
-select idUsuario from usuarios where usr_registro = 999999;
+
+select * from usuarios;
+select * from especialidades;
+select * from guia;
+select * from LizDeOuro;
+show triggers;
+
+insert into LizDeOuro(liz_possui, fkUsuario) values
+(false, 100);
+
+select count(idInsignia) from insignia;

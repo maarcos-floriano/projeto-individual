@@ -217,7 +217,7 @@ section article header div{
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-evenly;
 }
 .main-insignia section form{
@@ -226,11 +226,11 @@ section article header div{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 }
 section form .pergunta{
   width: 100%;
-  height: 130px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -250,8 +250,48 @@ section form .pergunta{
   color: #2C4678;
 }
 .enunciado p{
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 400;
   color: #2C4678;
   text-align: justify;
+}
+.respostas input[type="checkbox"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height:  10px;
+  /* Adicionando um estilo de caixa para melhorar a aparência */
+  appearance: none;
+  /* -webkit-appearance: none; */
+  /* -moz-appearance: none; */
+
+  /* Adicionando uma borda para definir a caixa do checkbox */
+  border: 2px solid rgb(68, 255, 0);
+  border-radius: 4px; /* Cantos arredondados */
+
+  /* Adicionando um tamanho fixo para o checkbox */
+  width: 20px;
+  height: 20px;
+
+  /* Adicionando uma margem para espaçamento */
+  margin-right: 8px;
+
+  /* Adicionando um estilo de cursor ao passar o mouse */
+  cursor: pointer;
+
+  transition: .3s;
+}
+.respostas input[type="checkbox"]:checked::before {
+  /* Adicionando seta triangular com CSS */
+  content: "\2705"; /* Unicode para uma seta triangular para a direita */
+  color: #fff; /* Cor do ícone quando marcado */
+  font-size: 14px; /* Tamanho da fonte do ícone */
+  width: 100%;
+}
+/* Estilizando o input checkbox quando estiver marcado */
+.respostas input[type="checkbox"]:checked {
+  /* Mudando a cor de fundo quando marcado */
+  background-color: rgba(68, 255, 0, 0.418);
+  border-color: rgba(54, 153, 17, 0.418);
 }
