@@ -783,9 +783,6 @@
       },
     },
   });
-  listaAtiv = [];
-
-  dataGuia = [listaAtiv.length, 10];
 
   new Chart(chartGuia, {
     type: "doughnut",
@@ -794,7 +791,7 @@
       datasets: [
         {
           label: "# of Votes",
-          data: dataGuia,
+          data: [1, 2],
           backgroundColor: ["green", "blue"],
         },
       ],
@@ -815,7 +812,6 @@
   function atualizarAtividade() {
     var idUsuario = sessionStorage.ID_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
-    b_usuario.innerHTML = nome.toUpperCase();
 
     fetch(`/guia/listar/${idUsuario}`, {
       method: "post",
