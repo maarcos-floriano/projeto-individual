@@ -640,6 +640,7 @@
             </li>
           </ol>
         </article>
+        <!-- <button class="button-68" role="button" onclick="updateAtividades()">Salvar</button> -->
       </section>
     </main>
     <main class="main-insignia" id="tela_insignia">
@@ -725,7 +726,7 @@
 <script src="../js/sessao.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  const chartGuia = document.getElementById("chartGuia");
+  // const chartGuia = document.getElementById("chartGuia");
   const chartEspecMensal = document.getElementById("chartEspecMensal");
   const chartEspecArea = document.getElementById("chartEspecArea");
 
@@ -784,30 +785,8 @@
     },
   });
 
-  new Chart(chartGuia, {
-    type: "doughnut",
-    data: {
-      labels: ["Concliu", "Não Concluiu"],
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [1, 2],
-          backgroundColor: ["green", "blue"],
-        },
-      ],
-    },
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: "Atividades Guia",
-          position: {
-            right: "0",
-          },
-        },
-      },
-    },
-  });
+  var listaAtiv = [];
+  var qtdAtiv = 0;
 
   function atualizarAtividade() {
     var idUsuario = sessionStorage.ID_USUARIO;
@@ -824,7 +803,9 @@
 
         if (resposta.ok) {
           console.log(
-            "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+            "Post realizado com sucesso pelo usuario de ID: " +
+              idUsuario +
+              "!"
           );
           resposta.json().then((json) => {
             for (var i = 0; i < json.length; i++) {
@@ -834,7 +815,35 @@
               checkbox.checked = true;
 
               listaAtiv.push(json[i].guia_nome);
+              qtdAtiv++;
             }
+
+            // Update the chart with the new qtdAtiv value
+            var chartGuia = document.getElementById("chartGuia").getContext("2d");
+            var chart = new Chart(chartGuia, {
+              type: "doughnut",
+              data: {
+                labels: ["Concliu", "Não Concluiu"],
+                datasets: [
+                  {
+                    label: "# of Votes",
+                    data: [qtdAtiv, 10-qtdAtiv],
+                    backgroundColor: ["green", "blue"],
+                  },
+                ],
+              },
+              options: {
+                plugins: {
+                  title: {
+                    display: true,
+                    text: "Atividades Guia",
+                    position: {
+                      right: "0",
+                    },
+                  },
+                },
+              },
+            });
           });
         } else if (resposta.status == 404) {
           window.alert("Deu 404!");

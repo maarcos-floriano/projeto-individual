@@ -104,12 +104,10 @@ function verificarAtividades() {
 listaCheckInsignia = [];
 listaNoCheckInsignia = [];
 
-function verificarInsignias(){
-  let insignia = document.querySelectorAll(
-    '.pergunta input[type="checkbox"]'
-  );
+function verificarInsignias() {
+  let insignias = document.querySelectorAll('.pergunta input[type="checkbox"]');
 
-  insignia.forEach(function (checkbox) {
+  insignias.forEach(function (checkbox) {
     if (checkbox.checked) {
       var insigniaExiste = listaCheckInsignia.indexOf(checkbox.name);
       if (insigniaExiste == -1) {
@@ -123,8 +121,7 @@ function verificarInsignias(){
 
         if (checkbox.name != "") {
           listaNoCheckInsignia.push(checkbox.name);
-
-          return removerinsignia();
+          return removerInsignia();
         }
       }
 
@@ -248,6 +245,8 @@ function updateAtividades() {
       console.log(`#ERRO: ${resposta}`);
       // finalizarAguardar();
     });
+
+    setTimeout(function(){ window.location.reload(); }, 1000);
 }
 
 function removerAtividades() {
