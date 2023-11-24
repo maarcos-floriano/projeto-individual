@@ -89,8 +89,8 @@ function verificarAtividades() {
       listaNoCheckAtiv.push(checkbox.name);
       return removerAtividades();
     }
-    return updateAtividades();
   });
+  return updateAtividades();
 }
 
 listaCheckInsignia = [];
