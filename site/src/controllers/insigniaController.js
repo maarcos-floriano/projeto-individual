@@ -26,7 +26,7 @@ function remover(req, res){
     }
 
     var promises = [];
-    for(var i = 0; i < nomeInsigniaNo.length; i++){
+    for(var i = 0; i < descInsigniaNo.length; i++){
         promises.push(insigniaModel.remover(descInsigniaNo[i], idUsuario));
     }
 
@@ -40,16 +40,16 @@ function remover(req, res){
 }
 
 function conquistar(req, res) {
-    var insignia_desc = req.body.insignia_desc;
+    var descInsignia = req.body.insignia_desc;
     var idUsuario = req.params.idUsuario;
     
-    if (insignia_desc == undefined || idUsuario == undefined) {
+    if (descInsignia == undefined || idUsuario == undefined) {
         res.status(400).send('Guia nome está undefined!');
     }
 
     var promises = [];
-    for(var i = 0; i < insignia_desc.length; i++){
-        promises.push(insigniaModel.conquistar(insignia_desc[i], idUsuario));
+    for(var i = 0; i < descInsignia.length; i++){
+        promises.push(insigniaModel.conquistar(descInsignia[i], idUsuario));
     }
 
     Promise.all(promises)

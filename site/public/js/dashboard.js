@@ -69,35 +69,23 @@ function verificarEspecialidades() {
   return updateEspecialidades();
 }
 
-let listaCheckAtiv = [];
-let listaNoCheckAtiv = [];
+var listaCheckAtiv = [];
+var listaNoCheckAtiv = [];
 
 function verificarAtividades() {
   let atividades = document.querySelectorAll(
     '#atividadesGuia input[type="checkbox"]'
   );
+  listaCheckAtiv = [];
 
   atividades.forEach(function (checkbox) {
     if (checkbox.checked) {
-      var ativExiste = listaCheckAtiv.indexOf(checkbox.name);
-      if (ativExiste == -1) {
-        listaCheckAtiv.push(checkbox.name);
-      }
+      listaCheckAtiv.push(checkbox.name);
     } else {
-      var index = listaCheckAtiv.indexOf(checkbox.name);
-
-      if (index != -1) {
-        listaCheckAtiv.splice(index, 1);
-
-        if (checkbox.name != "") {
-          listaNoCheckAtiv.push(checkbox.name);
-
-          return removerAtividades();
-        }
-      }
-
-      return updateAtividades();
+      listaNoCheckAtiv.push(checkbox.name);
+      return removerAtividades();
     }
+    return updateAtividades();
   });
 }
 
@@ -105,28 +93,19 @@ listaCheckInsignia = [];
 listaNoCheckInsignia = [];
 
 function verificarInsignias() {
-  let insignias = document.querySelectorAll('.pergunta input[type="checkbox"]');
+  let insignias = document.querySelectorAll('.pergunta .respostas input[type="checkbox"]');
+
+  listaCheckInsignia = [];
 
   insignias.forEach(function (checkbox) {
     if (checkbox.checked) {
-      var insigniaExiste = listaCheckInsignia.indexOf(checkbox.name);
-      if (insigniaExiste == -1) {
-        listaCheckInsignia.push(checkbox.name);
-      }
+      listaCheckInsignia.push(checkbox.name);
     } else {
-      var index = listaCheckInsignia.indexOf(checkbox.name);
-
-      if (index != -1) {
-        listaCheckInsignia.splice(index, 1);
-
-        if (checkbox.name != "") {
-          listaNoCheckInsignia.push(checkbox.name);
-          return removerInsignia();
-        }
-      }
-
-      return updateInsignia();
+      console.log('passou Aqui');
+      listaNoCheckInsignia.push(checkbox.name);
+      return removerinsignia();
     }
+    return updateInsignia();
   });
 }
 
@@ -150,7 +129,9 @@ function updateEspecialidades() {
 
       if (resposta.ok) {
         console.log(
-          "Post de Especialidades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de Especialidades realizado com sucesso pelo usuario de ID: " +
+            idUsuario +
+            "!"
         );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
@@ -189,7 +170,9 @@ function removerEspecialides() {
 
       if (resposta.ok) {
         console.log(
-          "Post de remover Especialidades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de remover Especialidades realizado com sucesso pelo usuario de ID: " +
+            idUsuario +
+            "!"
         );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
@@ -227,7 +210,9 @@ function updateAtividades() {
 
       if (resposta.ok) {
         console.log(
-          "Post de Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de Atividades realizado com sucesso pelo usuario de ID: " +
+            idUsuario +
+            "!"
         );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
@@ -246,7 +231,9 @@ function updateAtividades() {
       // finalizarAguardar();
     });
 
-    setTimeout(function(){ window.location.reload(); }, 1000);
+  // setTimeout(function () {
+  //   window.location.reload();
+  // }, 1000);
 }
 
 function removerAtividades() {
@@ -267,7 +254,9 @@ function removerAtividades() {
 
       if (resposta.ok) {
         console.log(
-          "Post de remover Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de remover Atividades realizado com sucesso pelo usuario de ID: " +
+            idUsuario +
+            "!"
         );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
@@ -280,8 +269,7 @@ function removerAtividades() {
           resposta.status
         );
       }
-    }
-    )
+    })
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
       // finalizarAguardar();
@@ -289,7 +277,12 @@ function removerAtividades() {
 }
 
 function trocaDeTela(tela) {
-  var monitores = [monitorEspecialidades, monitorDashboard, monitorGuia, monitorInsignia];
+  var monitores = [
+    monitorEspecialidades,
+    monitorDashboard,
+    monitorGuia,
+    monitorInsignia,
+  ];
 
   for (var i = 0; i < monitores.length; i++) {
     if (tela == 0) {
@@ -307,7 +300,7 @@ function trocaDeTela(tela) {
       monitores[1].style.display = "none";
       monitores[2].style.display = "flex";
       monitores[3].style.display = "none";
-    }else{
+    } else {
       monitores[0].style.display = "none";
       monitores[1].style.display = "none";
       monitores[2].style.display = "none";
@@ -316,7 +309,7 @@ function trocaDeTela(tela) {
   }
 }
 
-function atualizarEspecialidades(){
+function atualizarEspecialidades() {
   var idUsuario = sessionStorage.ID_USUARIO;
   var nome = sessionStorage.NOME_USUARIO;
   b_usuario.innerHTML = nome.toUpperCase();
@@ -334,16 +327,17 @@ function atualizarEspecialidades(){
         console.log(
           "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
         );
-        resposta.json().then(json => {
-
-          for(var i=0; i<json.length; i++){
-            var checkbox = document.querySelector(`input[name="${json[i].espec_nome}"]`);
+        resposta.json().then((json) => {
+          for (var i = 0; i < json.length; i++) {
+            var checkbox = document.querySelector(
+              `input[name="${json[i].espec_nome}"]`
+            );
             checkbox.checked = true;
 
             listaCheckEspec.push(json[i].espec_nome);
           }
           barra_progresso.value += listaCheckEspec.length * 2;
-      });
+        });
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
@@ -359,7 +353,7 @@ function atualizarEspecialidades(){
     });
 }
 
-function atualizarAtividade(){
+function atualizarAtividade() {
   var idUsuario = sessionStorage.ID_USUARIO;
   var nome = sessionStorage.NOME_USUARIO;
   b_usuario.innerHTML = nome.toUpperCase();
@@ -377,16 +371,17 @@ function atualizarAtividade(){
         console.log(
           "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
         );
-        resposta.json().then(json => {
-
-          for(var i=0; i<json.length; i++){
-            var checkbox = document.querySelector(`input[name="${json[i].guia_nome}"]`);
+        resposta.json().then((json) => {
+          for (var i = 0; i <= json.length; i++) {
+            var checkbox = document.querySelector(
+              `input[name="${json[i].guia_nome}"]`
+            );
             checkbox.checked = true;
 
             listaCheckAtiv.push(json[i].guia_nome);
           }
           barra_progresso.value += listaCheckAtiv.length * 2;
-      });
+        });
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
@@ -402,7 +397,7 @@ function atualizarAtividade(){
     });
 }
 
-function updateInsignia(){
+function updateInsignia() {
   var idUsuario = sessionStorage.ID_USUARIO;
 
   fetch(`/insignia/conquistar/${idUsuario}`, {
@@ -420,7 +415,9 @@ function updateInsignia(){
 
       if (resposta.ok) {
         console.log(
-          "Post de Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de Atividades realizado com sucesso pelo usuario de ID: " +
+            idUsuario +
+            "!"
         );
         // window.location = "/dashboard/mural.html";
         // limparFormulario();
@@ -440,8 +437,11 @@ function updateInsignia(){
     });
 }
 
-function removerinsignia(){
+function removerinsignia() {
   var idUsuario = sessionStorage.ID_USUARIO;
+
+  console.log('OLALFE',listaNoCheckInsignia);
+
 
   fetch(`/insignia/remover/${idUsuario}`, {
     method: "post",
@@ -458,11 +458,10 @@ function removerinsignia(){
 
       if (resposta.ok) {
         console.log(
-          "Post de remover Atividades realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+          "Post de remover Insiginias realizado com sucesso pelo usuario de ID: " +
+            idUsuario +
+            "!"
         );
-        // window.location = "/dashboard/mural.html";
-        // limparFormulario();
-        // finalizarAguardar();
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
@@ -471,15 +470,14 @@ function removerinsignia(){
           resposta.status
         );
       }
-    }
-    )
+    })
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
       // finalizarAguardar();
     });
 }
 
-function atualizarInsignia(){
+function atualizarInsignia() {
   var idUsuario = sessionStorage.ID_USUARIO;
   var nome = sessionStorage.NOME_USUARIO;
   b_usuario.innerHTML = nome.toUpperCase();
@@ -497,16 +495,17 @@ function atualizarInsignia(){
         console.log(
           "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
         );
-        resposta.json().then(json => {
-
-          for(var i=0; i<json.length; i++){
-            var checkbox = document.querySelector(`input[name="${json[i].insignia_desc}"]`);
+        resposta.json().then((json) => {
+          for (var i = 0; i < json.length; i++) {
+            var checkbox = document.querySelector(
+              `input[name="${json[i].insignia_desc}"]`
+            );
             checkbox.checked = true;
 
             listaCheckInsignia.push(json[i].insignia_desc);
           }
           barra_progresso.value += listaCheckInsignia.length * 2;
-      });
+        });
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
@@ -522,8 +521,8 @@ function atualizarInsignia(){
     });
 }
 
-function atualizar(){
+function atualizar() {
   atualizarEspecialidades();
   atualizarAtividade();
   atualizarInsignia();
-} 
+}
