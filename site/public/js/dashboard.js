@@ -49,9 +49,13 @@ function verificarEspecialidades() {
 
   especialidades.forEach(function (checkbox) {
     if (checkbox.checked) {
+      console.log('nejhibdnhui',checkbox.value);
       var especExiste = listaCheckEspec.indexOf(checkbox.name);
       if (especExiste == -1) {
-        listaCheckEspec.push(checkbox.name);
+        listaCheckEspec.push({
+          nome: checkbox.name,
+          modalidade: checkbox.value
+        }  );
       }
     } else {
       var index = listaCheckEspec.indexOf(checkbox.name);
@@ -112,14 +116,15 @@ function verificarInsignias() {
 function updateEspecialidades() {
   var idUsuario = sessionStorage.ID_USUARIO;
 
+  console.log("aqui esta o OBJETO",listaCheckEspec);
+
   fetch(`/especialidade/conquistar/${idUsuario}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      espec_nome: listaCheckEspec,
-      espec_modalidade: "especialidade",
+      espec: listaCheckEspec,
       espec_possui: 1,
       idUsuario: idUsuario,
     }),

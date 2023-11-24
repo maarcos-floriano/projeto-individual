@@ -22,8 +22,7 @@ function remover(req, res) {
 }
 
 function conquistar(req, res) {
-  var nomeEspec = req.body.espec_nome;
-  var modalidadeEspec = req.body.espec_modalidade;
+  var nomeEspec = req.body.espec;
   var checkEspec = req.body.espec_possui;
   var idUsuario = req.params.idUsuario;
 
@@ -31,8 +30,8 @@ function conquistar(req, res) {
     return res.status(400).send("Especialidade nome está undefined!");
   }
   
-  var promises = nomeEspec.map(function(nome) {
-    return especialidadeModel.conquistar(nome, modalidadeEspec, checkEspec, idUsuario);
+  var promises = nomeEspec.map(function(especialidade) {
+    return especialidadeModel.conquistar(especialidade.nome, especialidade.modalidade, checkEspec, idUsuario);
   });
 
   Promise.all(promises)
