@@ -31,16 +31,15 @@ function maisOpcoes(idSelect) {
     verificarAtividades();
     verificarInsignias();
     idSelect.value = -1;
-    barra_progresso.value += listaCheckAtiv.length * 2;
-    barra_progresso.value += listaCheckEspec.length * 2;
 
-    // location.reload()
+    setTimeout(function () {
+    window.location.reload();
+    }, 1000);
   }
 }
 
 let listaCheckEspec = [];
 let listaNoCheckEspec = [];
-let idUsuario = sessionStorage.ID_USUARIO;
 
 function verificarEspecialidades() {
   let especialidades = document.querySelectorAll(
@@ -89,8 +88,8 @@ function verificarAtividades() {
       listaNoCheckAtiv.push(checkbox.name);
       return removerAtividades();
     }
+    return updateAtividades();
   });
-  return updateAtividades();
 }
 
 listaCheckInsignia = [];
@@ -105,12 +104,11 @@ function verificarInsignias() {
     if (checkbox.checked) {
       listaCheckInsignia.push(checkbox.name);
     } else {
-      console.log('passou Aqui');
       listaNoCheckInsignia.push(checkbox.name);
       return removerinsignia();
     }
-    return updateInsignia();
   });
+  return updateInsignia();
 }
 
 function updateEspecialidades() {
@@ -444,9 +442,6 @@ function updateInsignia() {
 
 function removerinsignia() {
   var idUsuario = sessionStorage.ID_USUARIO;
-
-  console.log('OLALFE',listaNoCheckInsignia);
-
 
   fetch(`/insignia/remover/${idUsuario}`, {
     method: "post",
