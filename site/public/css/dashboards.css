@@ -6,6 +6,33 @@ body {
   height: 100vh;
   font-family: Montserrat;
 }
+.container-loader{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.493);
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #ffffff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 aside {
   width: 20%;
   height: 100%;
@@ -15,27 +42,27 @@ aside {
   justify-content: space-evenly;
   align-items: center;
 }
-aside ul li{
-    display: flex;
-    align-items: center;
-    height: 30px;
-    border-radius: 5px;
-    transition: 0.2s;
-    margin: 20px 0px;
-    padding-left: 15px;
+aside ul li {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  border-radius: 5px;
+  transition: 0.2s;
+  margin: 20px 0px;
+  padding-left: 15px;
 }
-aside ul li:hover{
-    background-color: #00cf61;
-    cursor: pointer;
+aside ul li:hover {
+  background-color: #00cf61;
+  cursor: pointer;
 }
-aside figure{
+aside figure {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-aside figure progress{
-  transition: .3s;
+aside figure progress {
+  transition: 0.3s;
 }
 .main-dashboard {
   display: flex;
@@ -61,7 +88,7 @@ aside figure progress{
   align-items: center;
 }
 .titulo h1 {
-  color: #2C4678;
+  color: #2c4678;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -74,7 +101,7 @@ header .nav {
   justify-content: space-evenly;
   align-items: center;
 }
- header select {
+header select {
   height: 30px;
   width: 20px;
   background-color: transparent;
@@ -122,53 +149,7 @@ header .nav {
   align-items: center;
 }
 
-
 .main-especialidades {
-    display: none;
-    flex-direction: column;
-    width: 80%;
-    height: 100%;
-    background-color: #fff;
-    justify-content: space-between;
-    align-items: center;
-}
-.main-especialidades section{
-    width: 90%;
-    height: 30%;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.main-especialidades section article{
-    width: 40%;
-    background-color: #fff;
-    height: 150px;
-    overflow-y: scroll;
-    border-radius: 5px;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
-}
-section article header div{
-  position: absolute;
-  margin-left: -10px;
-  margin-top: -10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: yellow;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000000;
-    font-size: 10px;
-}
-.main-especialidades section article ul li{
-  font-size: 10px;
-  font-weight: 400;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-.main-atividades-guia{
   display: none;
   flex-direction: column;
   width: 80%;
@@ -177,7 +158,52 @@ section article header div{
   justify-content: space-between;
   align-items: center;
 }
-.main-atividades-guia section{
+.main-especialidades section {
+  width: 90%;
+  height: 30%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main-especialidades section article {
+  width: 40%;
+  background-color: #fff;
+  height: 150px;
+  overflow-y: scroll;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+section article header div {
+  position: absolute;
+  margin-left: -10px;
+  margin-top: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 10px;
+}
+.main-especialidades section article ul li {
+  font-size: 10px;
+  font-weight: 400;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.main-atividades-guia {
+  display: none;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-atividades-guia section {
   width: 100%;
   height: 100%;
   display: flex;
@@ -185,7 +211,7 @@ section article header div{
   align-items: center;
   justify-content: start;
 }
-.main-atividades-guia section article{
+.main-atividades-guia section article {
   width: 80%;
   height: 70%;
   display: flex;
@@ -193,19 +219,18 @@ section article header div{
   align-items: center;
   justify-content: center;
 }
-.main-atividades-guia section article ol li{
+.main-atividades-guia section article ol li {
   display: flex;
   align-items: center;
   height: 30px;
 }
-.main-atividades-guia section article ol li p{
+.main-atividades-guia section article ol li p {
   font-size: 15px;
   font-weight: 400;
-  color: #2C4678;
+  color: #2c4678;
   text-align: justify;
-
 }
-.main-insignia{
+.main-insignia {
   display: none;
   flex-direction: column;
   width: 80%;
@@ -214,14 +239,14 @@ section article header div{
   justify-content: space-between;
   align-items: center;
 }
-.main-insignia section{
+.main-insignia section {
   width: 100%;
   height: 90%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
-.main-insignia section form{
+.main-insignia section form {
   width: 80%;
   height: 80%;
   display: flex;
@@ -229,7 +254,7 @@ section article header div{
   align-items: center;
   justify-content: center;
 }
-section form .pergunta{
+section form .pergunta {
   width: 100%;
   height: 250px;
   display: flex;
@@ -237,7 +262,7 @@ section form .pergunta{
   justify-content: space-evenly;
   align-items: center;
 }
-.pergunta .enunciado{
+.pergunta .enunciado {
   width: 100%;
   height: 30%;
   display: flex;
@@ -245,15 +270,15 @@ section form .pergunta{
   justify-content: center;
   align-items: center;
 }
-.enunciado h3{
+.enunciado h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #2C4678;
+  color: #2c4678;
 }
-.enunciado p{
+.enunciado p {
   font-size: 20px;
   font-weight: 400;
-  color: #2C4678;
+  color: #2c4678;
   text-align: justify;
 }
 .respostas input[type="checkbox"] {
@@ -261,7 +286,7 @@ section form .pergunta{
   align-items: center;
   justify-content: center;
   width: 10px;
-  height:  10px;
+  height: 10px;
   /* Adicionando um estilo de caixa para melhorar a aparência */
   appearance: none;
   /* -webkit-appearance: none; */
@@ -281,7 +306,7 @@ section form .pergunta{
   /* Adicionando um estilo de cursor ao passar o mouse */
   cursor: pointer;
 
-  transition: .3s;
+  transition: 0.3s;
 }
 .respostas input[type="checkbox"]:checked::before {
   /* Adicionando seta triangular com CSS */

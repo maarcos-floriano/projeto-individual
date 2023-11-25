@@ -2,6 +2,7 @@ const monitorEspecialidades = document.getElementById("tela_especialidades");
 const monitorDashboard = document.getElementById("tela_dashboard");
 const monitorGuia = document.getElementById("tela_guia");
 const monitorInsignia = document.getElementById("tela_insignia");
+const carregando = document.getElementById("carregando");
 
 window.onload = atualizar();
 
@@ -31,10 +32,10 @@ function maisOpcoes(idSelect) {
     verificarAtividades();
     verificarInsignias();
     idSelect.value = -1;
-
+    carregando.style.display = "flex";
     setTimeout(function () {
     window.location.reload();
-    }, 1000);
+    }, 1500);
   }
 }
 
