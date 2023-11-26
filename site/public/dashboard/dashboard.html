@@ -105,7 +105,7 @@
       <section>
         <article>
           <header>
-            <div>10</div>
+            <div id="qtdEspecHabil">0</div>
           </header>
           <ul class="itens">
             <li>
@@ -210,7 +210,7 @@
         </article>
         <article>
           <header>
-            <div>10</div>
+            <div id="qtdEspecDesp">0</div>
           </header>
           <ul class="itens">
             <li><input type="checkbox" value="Desportos" name="Atletismo" />Atletismo</li>
@@ -244,7 +244,7 @@
       <section>
         <article>
           <header>
-            <div>10</div>
+            <div id="qtdEspecCult">0</div>
           </header>
           <ul class="itens">
             <li><input type="checkbox" value="cultura" name="Arte" />Arte</li>
@@ -261,7 +261,6 @@
             <li><input type="checkbox" value="cultura" name="Poetry" />Poetry</li>
             <li><input type="checkbox" value="cultura" name="Teatro" />Teatro</li>
             <li><input type="checkbox" value="cultura" name="Arqueologia" />Arqueologia</li>
-            <li><input type="checkbox" value="cultura" name="Astronomia" />Astronomia</li>
             <li><input type="checkbox" value="cultura" name="Botânica" />Botânica</li>
             <li><input type="checkbox" value="cultura" name="Geologia" />Geologia</li>
             <li><input type="checkbox" value="cultura" name="Herpetologia" />Herpetologia</li>
@@ -299,7 +298,7 @@
         </article>
         <article>
           <header>
-            <div>10</div>
+            <div id="qtdEspecServ">0</div>
           </header>
           <ul class="itens">
             <li>
@@ -371,7 +370,7 @@
       <section>
         <article>
           <header>
-            <div>10</div>
+            <div id="qtdEspecCienc">0</div>
           </header>
           <ul class="itens">
             <li><input type="checkbox" value="Ciencia e Tecnologia" name="Aeroespacial" />Aeroespacial</li>
@@ -750,32 +749,71 @@
 
   window.onload = function () {
     atualizarAtividade();
+    atualizarEspec();
   };
 
-  new Chart(chartEspecArea, {
-    type: "bar",
-    data: {
-      labels: ["Habil. Escoteira", "Desportos", "Cultura"],
-      datasets: [
-        {
-          label: "Especialidades",
-          data: [1, 2, 3],
-          backgroundColor: ["green"],
-        },
-      ],
-    },
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: "Especialidades Area",
-          position: {
-            right: "0",
+  especHabil = [];
+  especDesp = []; 
+  especCult = [];
+  especServ = [];
+  especCien = [];
+
+
+  function atualizarEspec() {
+    // code goes here
+    let especialidades = document.querySelectorAll('input[type="checkbox"]:checked');
+
+    for (let i = 0; i < especialidades.length; i++) {
+      if (especialidades[i].value == "Habilidade Escoteira") {
+        especHabil.push(especialidades[i].name);
+      } else if (especialidades[i].value == "Desportos") {
+        especDesp.push(especialidades[i].name);
+      } else if (especialidades[i].value == "cultura") {
+        especCult.push(especialidades[i].name);
+      } else if (especialidades[i].value == "Serviços") {
+        especServ.push(especialidades[i].name);
+      } else if (especialidades[i].value == "Ciencia e Tecnologia") {
+        especCien.push(especialidades[i].name);
+      }
+
+      var qtdEspec = especHabil.length + especDesp.length + especCult.length + especServ.length + especCien.length;
+      var qtdHabil = especHabil.length;
+      var qtdDesp = especDesp.length;
+      var qtdCult = especCult.length;
+      var qtdServ = especServ.length;
+      var qtdCien = especCien.length;
+      qtdEspecServ.innerHTML = qtdServ;
+      qtdEspecCienc.innerHTML = qtdCien;
+      qtdEspecHabil.innerHTML = qtdHabil;
+      qtdEspecDesp.innerHTML = qtdDesp;
+      qtdEspecCult.innerHTML = qtdCult;
+    }
+
+    new Chart(chartEspecArea, {
+      type: "bar",
+      data: {
+        labels: ["Habil. Escoteira", "Desportos", "Cultura"],
+        datasets: [
+          {
+            label: "Especialidades",
+            data: [qtdHabil, qtdDesp, qtdCult],
+            backgroundColor: ["green"],
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: "Especialidades Area",
+            position: {
+              right: "0",
+            },
           },
         },
-      },
-    },
-  });
+      }
+    });
+  }
 
   new Chart(chartEspecMensal, {
     type: "line",
@@ -836,7 +874,6 @@
               qtdAtiv++;
             }
 
-            // Update the chart with the new qtdAtiv value
             var chartGuia = document.getElementById("chartGuia").getContext("2d");
             var chart = new Chart(chartGuia, {
               type: "doughnut",
