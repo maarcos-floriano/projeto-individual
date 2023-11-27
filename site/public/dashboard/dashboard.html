@@ -63,7 +63,7 @@
       </header>
       <section class="grafico-superior">
         <article>
-          <canvas id="chartGuia" width="100%"></canvas>
+          <canvas id="chartEspecArea" width="100%"></canvas>
         </article>
         <article>
           <h2>Insignia da Modalidade</h2>
@@ -75,7 +75,7 @@
           <canvas id="chartEspecMensal" width="100%"></canvas>
         </article>
         <article class="grafico-barra">
-          <canvas id="chartEspecArea"></canvas>
+          <canvas id="chartGuia"></canvas>
         </article>
       </section>
     </main>
@@ -745,7 +745,7 @@
 <script>
   // const chartGuia = document.getElementById("chartGuia");
   const chartEspecMensal = document.getElementById("chartEspecMensal");
-  const chartEspecArea = document.getElementById("chartEspecArea");
+  var chartEspecArea = document.getElementById("chartEspecArea");
 
   window.onload = function () {
     atualizarAtividade();
@@ -789,30 +789,30 @@
       qtdEspecCult.innerHTML = qtdCult;
     }
 
-    new Chart(chartEspecArea, {
-      type: "bar",
-      data: {
-        labels: ["Habil. Escoteira", "Desportos", "Cultura"],
-        datasets: [
-          {
-            label: "Especialidades",
-            data: [qtdHabil, qtdDesp, qtdCult],
-            backgroundColor: ["green"],
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          title: {
-            display: true,
-            text: "Especialidades Area",
-            position: {
-              right: "0",
-            },
-          },
-        },
-      }
-    });
+    var chart = new Chart(chartEspecArea, {
+              type: "doughnut",
+              data: {
+                labels: ["Habil. Escoteira", "Desportos", "Cultura", "Serviços", "Ciencia e Tecnologia"],
+                datasets: [
+                  {
+                    label: "# of Votes",
+                    data: [qtdHabil, qtdDesp, qtdCult, qtdServ, qtdCien],
+                    backgroundColor: ["green", "blue", "red", "yellow", "orange"],
+                  },
+                ],
+              },
+              options: {
+                plugins: {
+                  title: {
+                    display: true,
+                    text: "Especialidades",
+                    position: {
+                      right: "0",
+                    },
+                  },
+                },
+              },
+            });
   }
 
   new Chart(chartEspecMensal, {

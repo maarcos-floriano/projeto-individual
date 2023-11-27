@@ -109,14 +109,14 @@ header select {
 }
 .main-dashboard .grafico-superior {
   width: 90%;
-  height: 200px;
+  height: 400px;
   display: flex;
   justify-content: space-between;
 }
 .grafico-superior article {
   display: flex;
-  width: 47.5%;
-  height: 200px;
+  width: 50%;
+  height: 100%;
   background-color: #fff;
   border-radius: 10px;
   flex-direction: column;
@@ -126,13 +126,13 @@ header select {
 .main-dashboard .grafico-inferior {
   display: flex;
   width: 90%;
-  height: 300px;
+  height: 400px;
   justify-content: space-between;
 }
 
 .grafico-inferior .grafico-linha {
   width: 55%;
-  height: 220px;
+  height: 100%;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
@@ -141,7 +141,7 @@ header select {
 
 .grafico-inferior .grafico-barra {
   width: 40%;
-  height: 220px;
+  height: 80%;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
