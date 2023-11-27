@@ -56,13 +56,39 @@ constraint idUser foreign key (fkUsuario) references usuarios(idUsuario)
 );
 
 
-select * from usuarios;
-select * from especialidades;
-select * from guia;
-select * from LizDeOuro;
-show triggers;
+SELECT * FROM usuarios;
+SELECT * FROM especialidades;
+SELECT * FROM guia;
+SELECT * FROM LizDeOuro;
 
-insert into LizDeOuro(liz_possui, fkUsuario) values
-(false, 100);
+insert into especialidade VALUES 
+(1, 'Ciclista', 'Desportos', '2023-01-01', true, 100),
+(2, 'Futebol', 'Desportos', '2023-01-04', true, 100),
+(3, 'Natação', 'Desportos', '2023-01-05', true, 100),
+(4, 'Atletismo', 'Desportos', '2023-02-06', true, 100),
+(5, 'Basquete', 'Desportos', '2023-02-07', true, 100),
+(6, 'Volei', 'Desportos', '2023-02-08', true, 100),
+(7, 'Tênis', 'Desportos', '2023-02-09', true, 100),
+(8, 'Handebol', 'Desportos', '2023-03-10', true, 100),
+(9, 'Ginástica', 'Desportos', '2023-03-11', true, 100),
+(10, 'Judô', 'Desportos', '2023-03-12', true, 100),
+(11, 'Karatê', 'Desportos', '2023-03-13', true, 100),
+(12, 'Taekwondo', 'Desportos', '2023-05-14', true, 100),
+(13, 'Xadrez', 'Desportos', '2023-05-15', true, 100),
+(14, 'Canto', 'Cultura', '2023-05-16', true, 100),
+(15, 'Dança', 'Cultura', '2023-05-17', true, 100),
+(16, 'Teatro', 'Cultura', '2023-05-18', true, 100),
+(17, 'Pintura', 'Cultura', '2023-06-19', true, 100),
+(18, 'Escultura', 'Cultura', '2023-06-20', true, 100),
+(19, 'Desenho', 'Cultura', '2023-06-21', true, 100),
+(20, 'Artesanato', 'Cultura', '2023-06-22', true, 100),
+(21, 'Fotografia', 'Cultura', '2023-07-23', true, 100),
+(22, 'Cinema', 'Cultura', '2023-07-24', true, 100);
 
-select count(idInsignia) from insignia;
+SELECT espec_nome, espec_modalidade, usr_nome, usr_registro, usr_patrulha FROM usuarios INNER JOIN especialidades ON usuarios.idUsuario = especialidades.fkUsuario;
+
+SELECT espec_modalidade FROM especialidades WHERE espec_dtConquista BETWEEN '2023-01-01' AND '2023-01-31';
+
+SELECT espec_modalidade FROM especialidades WHERE espec_dtConquista BETWEEN '2023-02-01' AND '2023-03-31';
+
+SELECT espec_modalidade FROM especialidades WHERE espec_dtConquista BETWEEN '2023-03-01' AND '2023-04-01';
