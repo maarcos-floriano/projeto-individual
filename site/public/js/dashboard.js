@@ -6,6 +6,8 @@ const carregando = document.getElementById("carregando");
 
 window.onload = atualizar();
 
+var tempoReload = 2000;
+
 function maisOpcoes(idSelect) {
   var menu = Number(idSelect.value);
   var direcionamentos = [
@@ -33,9 +35,15 @@ function maisOpcoes(idSelect) {
     verificarInsignias();
     idSelect.value = -1;
     carregando.style.display = "flex";
+
+    if (listaCheckEspec.length > 20) tempoReload = 5000;
+    else if (listaCheckEspec.length > 10) tempoReload = 4000;
+    else if (listaCheckEspec.length > 5) tempoReload = 3000;
+    else tempoReload = 2000;
+
     setTimeout(function () {
-    window.location.reload();
-    }, 1500);
+      window.location.reload();
+    }, tempoReload);
   }
 }
 
@@ -49,13 +57,13 @@ function verificarEspecialidades() {
 
   especialidades.forEach(function (checkbox) {
     if (checkbox.checked) {
-      console.log('nejhibdnhui',checkbox.value);
+      console.log("nejhibdnhui", checkbox.value);
       var especExiste = listaCheckEspec.indexOf(checkbox.name);
       if (especExiste == -1) {
         listaCheckEspec.push({
           nome: checkbox.name,
-          modalidade: checkbox.value
-        }  );
+          modalidade: checkbox.value,
+        });
       }
     } else {
       var index = listaCheckEspec.indexOf(checkbox.name);
@@ -97,7 +105,9 @@ listaCheckInsignia = [];
 listaNoCheckInsignia = [];
 
 function verificarInsignias() {
-  let insignias = document.querySelectorAll('.pergunta .respostas input[type="checkbox"]');
+  let insignias = document.querySelectorAll(
+    '.pergunta .respostas input[type="checkbox"]'
+  );
 
   listaCheckInsignia = [];
 
@@ -115,7 +125,7 @@ function verificarInsignias() {
 function updateEspecialidades() {
   var idUsuario = sessionStorage.ID_USUARIO;
 
-  console.log("aqui esta o OBJETO",listaCheckEspec);
+  console.log("aqui esta o OBJETO", listaCheckEspec);
 
   fetch(`/especialidade/conquistar/${idUsuario}`, {
     method: "post",
