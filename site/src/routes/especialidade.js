@@ -18,4 +18,8 @@ router.post("/listarEspec/:idUsuario", function (req, res) {
     especialidadeController.listarEspec(req, res);
 });
 
+router.post("/atualizarGrafico/:idUsuario", function (req, res) {
+    especialidadeController.atualizarGrafico(req, res);
+});
+
 module.exports = router;

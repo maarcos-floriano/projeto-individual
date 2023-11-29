@@ -58,9 +58,32 @@ function listarEspec(req, res){
   });
 }
 
+function atualizarGrafico(req, res) {
+  var idUsuario = req.params.idUsuario
+
+  especialidadeModel.atualizarGrafico(idUsuario)
+  .then(
+      function (resultado) {
+          res.json(resultado);
+      }
+  ).catch(
+      function (erro) {
+          console.log(erro);
+          console.log(
+              "\nHouve um erro ao ao tentar atualizar o grafico",
+              erro.sqlMessage
+          );
+          res.status(500).json(erro.sqlMessage);
+      }
+  );
+
+
+}
+
 module.exports = {
   remover,
   conquistar,
-  listarEspec
+  listarEspec,
+  atualizarGrafico
 };
 

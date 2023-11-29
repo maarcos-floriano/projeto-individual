@@ -49,9 +49,7 @@
           <figure>
             <img src="../assets/flor de lis.png" width="30px" />
           </figure>
-          <figure>
-            <img src="../assets/flor de lis.png" width="30px" />
-          </figure>
+          
           <select id="menuDash" onchange="maisOpcoes(menuDash)">
             <option selected></option>
             <option value="0">Sobre</option>
@@ -82,15 +80,13 @@
     <main class="main-especialidades" id="tela_especialidades">
       <header class="cabecalho">
         <div class="titulo">
-          <h1>Progresso da sua Liz de Ouro</h1>
+          <h1>Especialidades</h1>
         </div>
         <div class="nav">
           <figure>
             <img src="../assets/flor de lis.png" width="30px" />
           </figure>
-          <figure>
-            <img src="../assets/flor de lis.png" width="30px" />
-          </figure>
+          
           <select
             id="menuEspecialidade"
             onchange="maisOpcoes(menuEspecialidade)"
@@ -545,15 +541,13 @@
     <main class="main-atividades-guia" id="tela_guia">
       <header class="cabecalho">
         <div class="titulo">
-          <h1>Progresso da sua Liz de Ouro</h1>
+          <h1>Atividades Guia</h1>
         </div>
         <div class="nav">
           <figure>
             <img src="../assets/flor de lis.png" width="30px" />
           </figure>
-          <figure>
-            <img src="../assets/flor de lis.png" width="30px" />
-          </figure>
+          
           <select id="menuGuia" onchange="maisOpcoes(menuGuia)">
             <option value="0">Sobre</option>
             <option value="1">Feedback</option>
@@ -663,15 +657,13 @@
     <main class="main-insignia" id="tela_insignia">
       <header class="cabecalho">
         <div class="titulo">
-          <h1>Progresso da sua Liz de Ouro</h1>
+          <h1>Insignia da Modalidade</h1>
         </div>
         <div class="nav">
           <figure>
             <img src="../assets/flor de lis.png" width="30px" />
           </figure>
-          <figure>
-            <img src="../assets/flor de lis.png" width="30px" />
-          </figure>
+          
           <select id="menuInsignia" onchange="maisOpcoes(menuInsignia)">
             <option value="0">Sobre</option>
             <option value="1">Feedback</option>
@@ -749,7 +741,9 @@
 
   window.onload = function () {
     atualizarAtividade();
-    atualizarEspec();
+    setTimeout(() => {
+      atualizarEspec();
+    }, 1000);
   };
 
   especHabil = [];
@@ -814,32 +808,6 @@
               },
             });
   }
-
-  new Chart(chartEspecMensal, {
-    type: "line",
-    data: {
-      labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio"],
-      datasets: [
-        {
-          label: "Especialidades",
-          data: [1, 2, 3, 4, 5],
-          backgroundColor: ["green"],
-          borderColor: ["green"],
-        },
-      ],
-    },
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: "Especialidades Mensal",
-          position: {
-            right: "0",
-          },
-        },
-      },
-    },
-  });
 
   var listaAtiv = [];
   var qtdAtiv = 0;
@@ -913,5 +881,85 @@
         console.log(`#ERRO: ${resposta}`);
         // finalizarAguardar();
       });
+  }
+
+  fetch(`/especialidade/atualizarGrafico/${sessionStorage.ID_USUARIO}`, {
+    method: "POST",
+  }).then((resposta) => {
+    if (resposta.status == 200) {
+      resposta.json().then((resposta) => {
+        gerarGrafico(resposta);
+      });
+    } else {
+      console.log("Não foi encontrado nenhum projeto.");
+    }
+  });
+
+  function gerarGrafico(resposta) {
+    var listaData = [];
+    var listaTotalInvestimento = [];
+
+    for (var i = 0; i < resposta.length; i++) {
+      var mes = resposta[i].mes;
+
+      if (resposta[i].mes == "01") {
+        mes = "Janeiro";
+      } else if (resposta[i].mes == "02") {
+        mes = "Fevereiro";
+      } else if (resposta[i].mes == "03") {
+        mes = "Março";
+      } else if (resposta[i].mes =="04") {
+        mes = "Abril";
+      } else if (resposta[i].mes == "05") {
+        mes = "Maio";
+      } else if (resposta[i].mes == "06") {
+        mes = "Junho";
+      } else if (resposta[i].mes == "07") {
+        mes = "Julho";
+      } else if (resposta[i].mes == "08") {
+        mes = "Agosto";
+      } else if (resposta[i].mes == "09") {
+        mes = "Setembro";
+      } else if (resposta[i].mes == "10") {
+        mes = "Outubro";
+      } else if (resposta[i].mes == "11") {
+        mes = "Novembro";
+      } else if (resposta[i].mes == "12") {
+        mes = "Dezembro";
+      } else {
+        mes = "Mês Desconhecido";
+      }
+
+      var data = mes + '/' + resposta[i].ano
+
+      var total = resposta[i].total;
+      listaData.push(data);
+      listaTotalInvestimento.push(total);
+    }
+
+    console.log(listaData);
+
+    new Chart(chartEspecMensal, {
+      type: "line",
+      data: {
+        labels: listaData,
+        datasets: [
+          {
+            label: "Investimento por Mês",
+            data: listaTotalInvestimento,
+            backgroundColor: ["rgb(15, 82, 87)"],
+            borderColor: "rgb(15, 82, 87)",
+            borderWidth: 3,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
   }
 </script>

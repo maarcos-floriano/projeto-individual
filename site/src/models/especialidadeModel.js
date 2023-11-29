@@ -25,8 +25,17 @@ function listarEspec(idUsuario){
 
 }
 
+function atualizarGrafico (idUsuario) {
+  var instrucao = `
+  SELECT YEAR(espec_dtConquista) AS ano, MONTH(espec_dtConquista) AS mes, SUM(espec_possui) AS total FROM especialidades WHERE fkUsuario = ${idUsuario} GROUP BY ano, mes ORDER BY ano ASC, mes ASC;`
+
+  console.log(`Executando a instrução SQL: \n + ${instrucao}`)
+  return database.executar(instrucao)
+}
+
 module.exports = {
   conquistar,
   remover,
-  listarEspec
+  listarEspec,
+  atualizarGrafico
 };

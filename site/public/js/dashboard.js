@@ -12,7 +12,7 @@ function maisOpcoes(idSelect) {
   var menu = Number(idSelect.value);
   var direcionamentos = [
     "../sobre.html",
-    "http://mail.to/marcos.floriano@sptech.school",
+    "mailto:marcos.floraino@sptech.school",
     "../login.html",
   ];
   if (menu < 3) {
@@ -346,9 +346,10 @@ function atualizarEspecialidades() {
             var checkbox = document.querySelector(
               `input[name="${json[i].espec_nome}"]`
             );
-            checkbox.checked = true;
-
-            listaCheckEspec.push(json[i].espec_nome);
+            if (checkbox) {
+              checkbox.checked = true;
+              listaCheckEspec.push(json[i].espec_nome);
+            }
           }
           barra_progresso.value += listaCheckEspec.length * 2;
         });
