@@ -83,10 +83,8 @@ insert into especialidades(espec_nome, espec_modalidade, espec_dtConquista, espe
 ( 'Artesanato', 'Cultura', '2023-06-22', true, 100),
 ( 'Fotografia', 'Cultura', '2023-07-23', true, 100),
 ( 'Cinema', 'Cultura', '2023-07-24', true, 100);
-SELECT espec_nome, espec_modalidade, usr_nome, usr_registro, usr_patrulha FROM usuarios INNER JOIN especialidades ON usuarios.idUsuario = especialidades.fkUsuario;
+SELECT espec_nome, espec_modalidade, usr_nome, usr_registro, usr_patrulha FROM usuarios 
+INNER JOIN especialidades ON usuarios.idUsuario = especialidades.fkUsuario;
 
-SELECT espec_modalidade FROM especialidades WHERE espec_dtConquista BETWEEN '2023-01-01' AND '2023-01-31';
-
-SELECT espec_modalidade FROM especialidades WHERE espec_dtConquista BETWEEN '2023-02-01' AND '2023-03-31';
-
-SELECT espec_modalidade FROM especialidades WHERE espec_dtConquista BETWEEN '2023-03-01' AND '2023-04-01';
+SELECT YEAR(espec_dtConquista) AS ano, MONTH(espec_dtConquista) AS mes, SUM(espec_possui) AS total 
+FROM especialidades WHERE fkUsuario = 100 GROUP BY ano, mes ORDER BY ano ASC, mes ASC;
