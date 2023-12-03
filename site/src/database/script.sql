@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS especialidades (
     idEspec INT PRIMARY KEY AUTO_INCREMENT,
     espec_nome VARCHAR(45) UNIQUE,
     espec_modalidade VARCHAR(45),
-    espec_dtConquista DATETIME DEFAULT TIMESTAMP,
+    espec_dtConquista DATE,
     espec_possui BOOLEAN,
     fkUsuario INT,
     CONSTRAINT especUsuario FOREIGN KEY (fkUsuario) REFERENCES usuarios(idUsuario)
