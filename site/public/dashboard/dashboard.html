@@ -65,7 +65,7 @@
         </article>
         <article>
           <h2>Insignia da Modalidade</h2>
-          <canvas></canvas>
+          <canvas id="chartInsignia" width="100%"></canvas>
         </article>
       </section>
       <section class="grafico-inferior">
@@ -744,6 +744,7 @@
     setTimeout(() => {
       atualizarEspec();
     }, 1000);
+    atualizarInsignia();
   };
 
   especHabil = [];
@@ -962,4 +963,80 @@
       },
     });
   }
+
+
+  var listaCheckInsignia = [];
+  var qtdInsignia = 0;
+
+  function atualizarInsignia() {
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nome = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = nome.toUpperCase();
+  qtdInsignia = 0;
+
+  fetch(`/insignia/listar/${idUsuario}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(
+          "Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!"
+        );
+        resposta.json().then((json) => {
+          for (var i = 0; i < json.length; i++) {
+            var checkbox = document.querySelector(
+              `input[name="${json[i].insignia_desc}"]`
+            );
+            checkbox.checked = true;
+
+            listaCheckInsignia.push(json[i].insignia_desc);
+            qtdInsignia++;
+          }
+
+          var chartInsignia = document.getElementById("chartInsignia").getContext("2d");
+          var chart = new Chart(chartInsignia, {
+            type: "bar",
+            data: {
+              labels: ["Concliu", "Não Concluiu"],
+              datasets: [
+                {
+                  label: "# of Votes",
+                  data: [qtdInsignia, 3-qtdInsignia],
+                  backgroundColor: ["green", "blue"],
+                },
+              ],
+            },
+            options: {
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Insignia da Modalidade",
+                  position: {
+                    right: "0",
+                  },
+                },
+              },
+            },
+          }); 
+
+        });
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+}
+
 </script>

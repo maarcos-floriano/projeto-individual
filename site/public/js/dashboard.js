@@ -395,7 +395,7 @@ function atualizarAtividade() {
 
             listaCheckAtiv.push(json[i].guia_nome);
           }
-          barra_progresso.value += listaCheckAtiv.length * 2;
+          barra_progresso.value += listaCheckAtiv.length * 3;
         });
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
