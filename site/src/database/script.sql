@@ -61,28 +61,28 @@ SELECT * FROM guia;
 SELECT * FROM LizDeOuro;
 
 insert into especialidades(espec_nome, espec_modalidade, espec_dtConquista, espec_possui, fkUsuario) VALUES 
-( 'Ciclista', 'Desportos', '2023-01-01', true, 100),
+( 'Ciclismo', 'Desportos', '2023-01-01', true, 100),
 ( 'Futebol', 'Desportos', '2023-01-04', true, 100),
 ( 'Natação', 'Desportos', '2023-01-05', true, 100),
 ( 'Atletismo', 'Desportos', '2023-02-06', true, 100),
 ( 'Basquete', 'Desportos', '2023-02-07', true, 100),
-( 'Volei', 'Desportos', '2023-02-08', true, 100),
+( 'Surfe', 'Desportos', '2023-02-08', true, 100),
 ( 'Tênis', 'Desportos', '2023-02-09', true, 100),
-( 'Handebol', 'Desportos', '2023-03-10', true, 100),
-( 'Ginástica', 'Desportos', '2023-03-11', true, 100),
+( 'Hóquei', 'Desportos', '2023-03-10', true, 100),
+( 'Golfe', 'Desportos', '2023-03-11', true, 100),
 ( 'Judô', 'Desportos', '2023-03-12', true, 100),
 ( 'Karatê', 'Desportos', '2023-03-13', true, 100),
-( 'Taekwondo', 'Desportos', '2023-05-14', true, 100),
+( 'Voleibol', 'Desportos', '2023-05-14', true, 100),
 ( 'Xadrez', 'Desportos', '2023-05-15', true, 100),
-('Canto', 'Cultura', '2023-05-16', true, 100),
+('Arte', 'Cultura', '2023-05-16', true, 100),
 ('Dança', 'Cultura', '2023-05-17', true, 100),
-('Teatro', 'Cultura', '2023-05-18', true, 100),
-('Pintura', 'Cultura', '2023-06-19', true, 100),
-('Escultura', 'Cultura', '2023-06-20', true, 100),
-('Desenho', 'Cultura', '2023-06-21', true, 100),
-( 'Artesanato', 'Cultura', '2023-06-22', true, 100),
+('Linguística', 'Cultura', '2023-05-18', true, 100),
+('Zoologia', 'Cultura', '2023-06-19', true, 100),
+('Folklore', 'Cultura', '2023-06-20', true, 100),
+('Gastronomia', 'Cultura', '2023-06-21', true, 100),
+( 'Antropologia', 'Cultura', '2023-06-22', true, 100),
 ( 'Fotografia', 'Cultura', '2023-07-23', true, 100),
-( 'Cinema', 'Cultura', '2023-07-24', true, 100);
+( 'Numismática', 'Cultura', '2023-07-24', true, 100);
 SELECT espec_nome, espec_modalidade, usr_nome, usr_registro, usr_patrulha FROM usuarios 
 INNER JOIN especialidades ON usuarios.idUsuario = especialidades.fkUsuario;
 
