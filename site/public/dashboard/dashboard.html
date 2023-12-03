@@ -897,7 +897,7 @@
 
   function gerarGrafico(resposta) {
     var listaData = [];
-    var listaTotalInvestimento = [];
+    var listaTotalEspecialidade = [];
 
     for (var i = 0; i < resposta.length; i++) {
       var mes = resposta[i].mes;
@@ -934,7 +934,7 @@
 
       var total = resposta[i].total;
       listaData.push(data);
-      listaTotalInvestimento.push(total);
+      listaTotalEspecialidade.push(total);
     }
 
     console.log(listaData);
@@ -945,8 +945,8 @@
         labels: listaData,
         datasets: [
           {
-            label: "Investimento por Mês",
-            data: listaTotalInvestimento,
+            label: "Especialidade por Mês",
+            data: listaTotalEspecialidade,
             backgroundColor: ["rgb(15, 82, 87)"],
             borderColor: "rgb(15, 82, 87)",
             borderWidth: 3,
